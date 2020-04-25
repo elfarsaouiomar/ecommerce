@@ -7,3 +7,26 @@
 <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
 <script src="{% static 'js/aos.js' %}"></script>
 <script src="{% static 'js/main.js' %}"></script>
+<script src="{% static 'js/script.js' %}"></script>
+
+<script>
+    $("input[value=Send]").click(function() {
+        var email = $("input[type=email]").val();
+        var message =  $("#message");
+
+        $.ajax({
+        url: '{% url "subscribe" %}',
+        type:'POST',
+        headers: {'X-CSRFToken': '{{ csrf_token }}'}, // for csrf token
+        data: {
+            'email': email
+        },
+        success: function (data) {
+            if (data.length != 0){
+                message.text(data.response)
+            }
+        },
+        });
+    });
+
+</script>
