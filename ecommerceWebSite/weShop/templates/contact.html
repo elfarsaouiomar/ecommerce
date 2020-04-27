@@ -7,7 +7,7 @@
     <div class="bg-light py-3">
       <div class="container">
         <div class="row">
-          <div class="col-md-12 mb-0"><a href="index.html">Home</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">Contact</strong></div>
+          <div class="col-md-12 mb-0"><a href="{% url 'index' %}">Home</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">Contact</strong></div>
         </div>
       </div>
     </div>  
@@ -16,42 +16,65 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12">
-            <h2 class="h3 mb-3 text-black">Get In Touch</h2>
-          </div>
-          <div class="col-md-7">
 
-            <form action="#" method="post">
-              
+
+            {% if data %}
+                    <div class="alert {% if data.error %} alert-danger {% else %} alert-success {% endif %}  alert-dismissible fade show" role="alert">
+                        {% if data.error %}
+                            {{ data.error }}
+                        {% else %}
+                            {{ data.response }}
+                        {% endif %}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                        </button>
+            {% endif %}
+        </div>
+
+          <div class="col-md-6">
+            <form action="{% url 'contact' %}" method="post">
+              {% csrf_token %}
               <div class="p-3 p-lg-5 border">
                 <div class="form-group row">
                   <div class="col-md-6">
                     <label for="c_fname" class="text-black">First Name <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="c_fname" name="c_fname">
+                    <input type="text" required="required" class="form-control" value="{{ postParams.fname }}" id="c_fname" name="fname">
+                    {% if data.fname %} <p class="text-danger">{{data.fname}}</p>{% endif %}
                   </div>
+
                   <div class="col-md-6">
                     <label for="c_lname" class="text-black">Last Name <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="c_lname" name="c_lname">
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <div class="col-md-12">
-                    <label for="c_email" class="text-black">Email <span class="text-danger">*</span></label>
-                    <input type="email" class="form-control" id="c_email" name="c_email" placeholder="">
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <div class="col-md-12">
-                    <label for="c_subject" class="text-black">Subject </label>
-                    <input type="text" class="form-control" id="c_subject" name="c_subject">
+                    <input type="text" required="required" class="form-control" value="{{ postParams.lname }}" id="c_lname" name="lname">
+                    {% if data.lname %} <p class="text-danger">{{data.lname}}</p>{% endif %}
                   </div>
                 </div>
 
                 <div class="form-group row">
                   <div class="col-md-12">
-                    <label for="c_message" class="text-black">Message </label>
-                    <textarea name="c_message" id="c_message" cols="30" rows="7" class="form-control"></textarea>
+                    <label for="c_email" class="text-black">Email <span class="text-danger">*</span></label>
+                    <input type="email" required="required" class="form-control" value="{{ postParams.email }}" id="c_email" name="email" placeholder="Email">
+                    {% if data.email %} <p class="text-danger">{{data.email}}</p>{% endif %}
                   </div>
                 </div>
+
+                <div class="form-group row">
+                  <div class="col-md-12">
+                    <label for="c_subject" class="text-black">Subject <span class="text-danger">*</span></label>
+                    <input type="text" required="required" class="form-control" value="{{ postParams.subject }}" id="c_subject" name="subject">
+                    {% if data.subject %} <p class="text-danger">{{data.subject}}</p>{% endif %}
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <div class="col-md-12">
+                    <label for="c_message" class="text-black">Message <span class="text-danger">*</span></label>
+                    <textarea name="message" placeholder="type your message here" id="c_message" cols="30" rows="7" class="form-control">
+                      {% if data.message %}{{postParams.message}}{% endif %}
+                    </textarea>
+                    {% if data.message %} <p class="text-danger">{{data.message}}</p>{% endif %}
+                  </div>
+                </div>
+
                 <div class="form-group row">
                   <div class="col-lg-12">
                     <input type="submit" class="btn btn-primary btn-lg btn-block" value="Send Message">
@@ -60,7 +83,7 @@
               </div>
             </form>
           </div>
-          <div class="col-md-5 ml-auto">
+          <div class="col-md-6 ml-auto">
             <div class="p-4 border mb-3">
               <span class="d-block text-primary h6 text-uppercase">New York</span>
               <p class="mb-0">203 Fake St. Mountain View, San Francisco, California, USA</p>
@@ -78,6 +101,15 @@
         </div>
       </div>
     </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d44679.61915322073!2d-6.304436427535248!3d32.59349469293087!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xda3f2e4a8f758e5%3A0xa5a995a7e01796fe!2sKasbah%20Tadla!5e1!3m2!1sen!2sma!4v1587942579866!5m2!1sen!2sma" width="100%" height="500" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+          </div>
+      </div>
+    </div>
+
   </div>
   
   {% endblock %}

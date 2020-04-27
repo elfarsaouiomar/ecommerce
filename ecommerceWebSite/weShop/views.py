@@ -1,9 +1,22 @@
 from django.shortcuts import render
-from django.http import JsonResponse, HttpResponse
+from django.http import HttpResponse
 from json import dumps
-from validate_email import validate_email
-from .models import Subscribe
 
+from app.ContactApp import ContactApp
+from dto.ContactDto import ContactDto
+
+
+def parmsToMaps(req, args):
+    """
+    :param req: reuqest type post
+    :param args: list of params
+    :return: dict contain params and value
+    """
+    params = {}
+    for param in args:
+        value = req.POST.get(param)
+        params[param] = value
+    return params
 
 def index(request):
     return render(request, 'index.html')
@@ -15,7 +28,64 @@ def singleProduct(request):
     return render(request, 'shop-single.html')
 
 def contact(request):
-    return render(request, 'contact.html')
+    data = {}
+    context = {}
+
+    try:
+        if request.method == 'GET':
+            return render(request, 'contact.html')
+
+        # do sum code to save data form
+        elif request.method == 'POST':
+
+            postParams = ['fname', 'lname', 'email', 'subject', 'message']
+
+            params = parmsToMaps(request, postParams)
+
+            contactDto = ContactDto(params=params)
+            contactDto.validate()
+
+            if len(contactDto.errors) != 0:
+                context["data"] = contactDto.errors
+                context['postParams'] = params
+                return render(request, 'contact.html', context=context)
+            else:
+                contactApp = ContactApp()
+
+                contactApp.add(contactDto.data)
+
+                data['response'] = "thank you for your message"
+                context = {"data": data}
+                return render(request, 'contact.html', context=context)
+
+            """
+            if len(errors) == 10:
+                contact.message = message
+                contact.lname = lname
+                contact.fname = fname
+                contact.email = email
+                contact.subject = subject
+                contact.message = message
+                contact.save()
+            """
+
+
+        else:
+            data['error'] = 'Only {} request supported'.format(request.method)
+            context = {"data": data}
+            return render(request, 'contact.html', context=context)
+
+
+    except Exception as e:
+        print(e)
+        data['error'] = "something wrrong please try later !!!"
+        context = {"data": data}
+        return render(request, 'contact.html', context=context)
+
+
+
+
+
 
 def cart(request):
     return render(request, 'cart.html')
