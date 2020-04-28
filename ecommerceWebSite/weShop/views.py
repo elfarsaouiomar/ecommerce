@@ -1,31 +1,74 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from json import dumps
+from validate_email import validate_email
 
 from app.ContactApp import ContactApp
 from dto.ContactDto import ContactDto
+from .models import Subscribe, Product
+
 
 
 def parmsToMaps(req, args):
     """
-    :param req: reuqest type post
+    :param req: reuqest type post, GET
     :param args: list of params
     :return: dict contain params and value
     """
     params = {}
     for param in args:
-        value = req.POST.get(param)
-        params[param] = value
+        if req.method == "POST":
+            value = req.POST.get(param)
+            params[param] = value
+
+        elif req.method == "GET":
+            value = req.GET.get(param)
+            if value is not None:
+                params[param] = value
     return params
+
 
 def index(request):
     return render(request, 'index.html')
 
-def shop(request):
-    return render(request, 'shop.html')
 
-def singleProduct(request):
-    return render(request, 'shop-single.html')
+def findBy(request):
+
+    try:
+        if request.method == "GET":
+            searchParams = ['small', 'large', 'medium', 'price']
+            searchBy = parmsToMaps(request, searchParams).keys()
+
+            productList = []
+            for key in searchBy:
+                product = Product.objects.filter(size=key).all()
+                productList.append(product)
+
+                if 'price' in searchBy:
+                    productbyPrice = Product.objects.filter(size__range(30, 40))
+                    productList.append(productbyPrice)
+
+
+            context = {"productsList": productList}
+            return render(request, 'shop.html', context=context)
+
+    except Exception as e:
+        print (e)
+        return render(request, 'shop.html')
+
+
+
+def Search(request):
+    pass
+
+def shop(request):
+    productList = Product.objects.all().order_by('-dateDeCreation')
+    context = {"products": productList}
+    return render(request, 'shop.html', context=context)
+
+def singleProduct(request, slug):
+    context = {"slug": slug}
+    return render(request, 'shop-single.html', context=context)
 
 def contact(request):
     data = {}
@@ -81,11 +124,6 @@ def contact(request):
         data['error'] = "something wrrong please try later !!!"
         context = {"data": data}
         return render(request, 'contact.html', context=context)
-
-
-
-
-
 
 def cart(request):
     return render(request, 'cart.html')

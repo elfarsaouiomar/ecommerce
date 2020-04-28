@@ -1,5 +1,6 @@
 from django.db import models
 from django.db.models import Model
+from datetime import datetime, date
 
 
 class Subscribe(Model):
@@ -19,3 +20,39 @@ class Contact(Model):
 
     def __str__(self):
         return self.fname
+
+
+class Size(Model):
+    size = models.CharField(max_length=40, primary_key=True)
+
+    def __str__(self):
+        return self.size
+
+
+class Category(Model):
+    name = models.CharField(max_length=100, default=None)
+    image = models.ImageField(upload_to='categorys/', default='upload/categorys/children.jpg')
+
+
+    def __str__(self):
+        return self.name
+
+
+class Product(Model):
+
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=40, blank=False, null=True)
+    summary = models.TextField(max_length=100, blank=False, null=True)
+    description = models.TextField(max_length=3000)
+    price = models.FloatField(max_length=10)
+    quantity = models.IntegerField()
+    size = models.OneToOneField(Size, on_delete=models.PROTECT, primary_key=False)
+    category = models.OneToOneField(Category, on_delete=models.PROTECT, primary_key=False)
+    isNew = models.BooleanField(default=True)
+    inStock = models.BooleanField(default=True)
+    isActive = models.BooleanField(default=True)
+    image = models.ImageField(upload_to='upload/', default=None)
+    dateDeCreation = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name

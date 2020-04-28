@@ -11,7 +11,7 @@
 
 <script>
     $("input[value=Send]").click(function() {
-        var email = $("input[type=email]").val();
+        var email = $("input[type=email]")
         var message =  $("#message");
 
         $.ajax({
@@ -19,7 +19,7 @@
         type:'POST',
         headers: {'X-CSRFToken': '{{ csrf_token }}'}, // for csrf token
         data: {
-            'email': email
+            'email': email.val(),
         },
         success: function (data) {
             if (data.length != 0){
