@@ -5,7 +5,9 @@ from validate_email import validate_email
 
 from app.ContactApp import ContactApp
 from dto.ContactDto import ContactDto
-from .models import Subscribe, Product, Category
+from .models import Subscribe, Product, Category, Service
+
+
 
 
 def parmsToMaps(req, args):
@@ -27,7 +29,12 @@ def parmsToMaps(req, args):
     return params
 
 def index(request):
-    return render(request, 'index.html')
+    context = {}
+    catigorys = Category.objects.all()
+    services = Service.objects.all()
+    context["catigorys"] = catigorys
+    context["services"] = services
+    return render(request, 'index.html', context=context)
 
 def findBy(request):
     pass
