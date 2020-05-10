@@ -28,11 +28,17 @@ class Size(Model):
     def __str__(self):
         return self.size
 
+class Service(Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField(max_length=300)
+    icon = models.CharField(max_length=40)
+
+    def __str__(self):
+        return self.name
 
 class Category(Model):
-    name = models.CharField(max_length=100, default=None)
+    name = models.CharField(max_length=100, primary_key=True)
     image = models.ImageField(upload_to='categorys/', default='upload/categorys/children.jpg')
-
 
     def __str__(self):
         return self.name
@@ -46,8 +52,8 @@ class Product(Model):
     description = models.TextField(max_length=3000)
     price = models.FloatField(max_length=10)
     quantity = models.IntegerField()
-    size = models.OneToOneField(Size, on_delete=models.PROTECT, primary_key=False)
-    category = models.OneToOneField(Category, on_delete=models.PROTECT, primary_key=False)
+    size = models.ForeignKey(Size, on_delete=models.PROTECT)
+    category = models.ForeignKey(Category, on_delete=models.PROTECT)
     isNew = models.BooleanField(default=True)
     inStock = models.BooleanField(default=True)
     isActive = models.BooleanField(default=True)
@@ -56,3 +62,4 @@ class Product(Model):
 
     def __str__(self):
         return self.name
+

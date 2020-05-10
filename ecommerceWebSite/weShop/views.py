@@ -5,8 +5,7 @@ from validate_email import validate_email
 
 from app.ContactApp import ContactApp
 from dto.ContactDto import ContactDto
-from .models import Subscribe, Product
-
+from .models import Subscribe, Product, Category
 
 
 def parmsToMaps(req, args):
@@ -27,13 +26,12 @@ def parmsToMaps(req, args):
                 params[param] = value
     return params
 
-
 def index(request):
     return render(request, 'index.html')
 
-
 def findBy(request):
-
+    pass
+    """
     try:
         if request.method == "GET":
             searchParams = ['small', 'large', 'medium', 'price']
@@ -55,20 +53,45 @@ def findBy(request):
     except Exception as e:
         print (e)
         return render(request, 'shop.html')
-
-
+    """
 
 def Search(request):
     pass
 
 def shop(request):
-    productList = Product.objects.all().order_by('-dateDeCreation')
-    context = {"products": productList}
+    context = {}
+    products = Product.objects.all().order_by('-dateDeCreation')
+    catigorys = Category.objects.all()
+    context["products"] = products
+    context["catigorys"] = catigorys
     return render(request, 'shop.html', context=context)
 
+def categorys(request, slug):
+    try:
+        if request.method == "GET":
+            if slug:
+                catigorys = Product.objects.filter(category_id=slug)
+            else:
+                catigorys = Product.objects.all()
+
+            context = {"products": catigorys}
+            return render(request, 'shop.html', context=context)
+        else:
+            return redirect(request, 'index')
+
+    except Exception as err:
+        print (err)
+
 def singleProduct(request, slug):
-    context = {"slug": slug}
-    return render(request, 'shop-single.html', context=context)
+    context = {}
+    try:
+        if request.method == "GET":
+            if slug:
+                product = Product.objects.filter(id=slug)
+                context['products'] = product
+                return render(request, 'shop-single.html', context=context)
+    except Exception as e:
+        print (e)
 
 def contact(request):
     data = {}
@@ -136,23 +159,22 @@ def thankyou(request):
 
 def subscribe(request):
     data = {}
-
     try:
-        if request.method == "POST":  # os request.GET()
-            email = request.POST.get('email')
-            if email is not None:
-                is_valid = validate_email(email)
-                if is_valid:
-                    subscribe = Subscribe()
-                    subscribe.email = email
-                    subscribe.save()
-                    data['response'] = 'thank you for subscribe'
-                else:
-                    data['response'] = 'email is invalid'
-            else:
-                data['response'] = 'email is required'
-        else:
+        if request.method != "POST":
             data['response'] = 'Only POST request supported'
+
+        email = request.POST.get('email')
+        if email is None:
+            data['response'] = 'email is required'
+
+        is_valid = validate_email(email)
+        if is_valid:
+            subscribe = Subscribe()
+            subscribe.email = email
+            subscribe.save()
+            data['response'] = 'thank you for subscribe'
+        else:
+            data['response'] = 'email is invalid'
 
     except Exception as e:
         print(e)

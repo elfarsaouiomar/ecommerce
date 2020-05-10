@@ -98,7 +98,7 @@ a {
   position: relative; }
   .site-section-heading:before {
     content: "";
-    left: 0%;
+    left: 50%;
     top: 0;
     position: absolute;
     width: 40px;
