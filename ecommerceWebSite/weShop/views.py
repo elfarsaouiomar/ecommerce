@@ -32,35 +32,13 @@ def index(request):
     context = {}
     catigorys = Category.objects.all()
     services = Service.objects.all()
+    mostSalles = Product.objects.all().order_by('-rank')[:6]
+
+    context["mostSalles"] = mostSalles
     context["catigorys"] = catigorys
     context["services"] = services
     return render(request, 'index.html', context=context)
 
-def findBy(request):
-    pass
-    """
-    try:
-        if request.method == "GET":
-            searchParams = ['small', 'large', 'medium', 'price']
-            searchBy = parmsToMaps(request, searchParams).keys()
-
-            productList = []
-            for key in searchBy:
-                product = Product.objects.filter(size=key).all()
-                productList.append(product)
-
-                if 'price' in searchBy:
-                    productbyPrice = Product.objects.filter(size__range(30, 40))
-                    productList.append(productbyPrice)
-
-
-            context = {"productsList": productList}
-            return render(request, 'shop.html', context=context)
-
-    except Exception as e:
-        print (e)
-        return render(request, 'shop.html')
-    """
 
 def Search(request):
     pass
@@ -100,63 +78,14 @@ def singleProduct(request, slug):
     except Exception as e:
         print (e)
 
-def contact(request):
-    data = {}
-    context = {}
-
-    try:
-        if request.method == 'GET':
-            return render(request, 'contact.html')
-
-        # do sum code to save data form
-        elif request.method == 'POST':
-
-            postParams = ['fname', 'lname', 'email', 'subject', 'message']
-
-            params = parmsToMaps(request, postParams)
-
-            contactDto = ContactDto(params=params)
-            contactDto.validate()
-
-            if len(contactDto.errors) != 0:
-                context["data"] = contactDto.errors
-                context['postParams'] = params
-                return render(request, 'contact.html', context=context)
-            else:
-                contactApp = ContactApp()
-
-                contactApp.add(contactDto.data)
-
-                data['response'] = "thank you for your message"
-                context = {"data": data}
-                return render(request, 'contact.html', context=context)
-
-            """
-            if len(errors) == 10:
-                contact.message = message
-                contact.lname = lname
-                contact.fname = fname
-                contact.email = email
-                contact.subject = subject
-                contact.message = message
-                contact.save()
-            """
-
-
-        else:
-            data['error'] = 'Only {} request supported'.format(request.method)
-            context = {"data": data}
-            return render(request, 'contact.html', context=context)
-
-
-    except Exception as e:
-        print(e)
-        data['error'] = "something wrrong please try later !!!"
-        context = {"data": data}
-        return render(request, 'contact.html', context=context)
-
 def cart(request):
     return render(request, 'cart.html')
+
+def addTocart(request):
+    pass
+
+def deleteFromCart(request):
+    pass
 
 def checkout(request):
     return render(request, 'checkout.html')
@@ -190,3 +119,39 @@ def subscribe(request):
     finally:
         return HttpResponse(dumps(data), content_type="application/json")
 
+
+################### Page Contact ####################################
+def contact(request):
+    data = {}
+    context = {}
+    try:
+        if request.method == 'GET':
+            return render(request, 'contact.html')
+
+        elif request.method == 'POST':
+            postParams = ['fname', 'lname', 'email', 'subject', 'message']
+            params = parmsToMaps(request, postParams)
+            contactDto = ContactDto(params=params)
+            contactDto.validate()
+
+            # check if dto return error
+            if len(contactDto.errors) != 0:
+                context["data"] = contactDto.errors
+                context['postParams'] = params
+                return render(request, 'contact.html', context=context)
+            else:
+                contactApp = ContactApp()
+                contactApp.add(contactDto.data)
+                data['response'] = "thank you for your message"
+                context = {"data": data}
+                return render(request, 'contact.html', context=context)
+        else:
+            data['error'] = 'Only POST, GET request supported'
+            context = {"data": data}
+            return render(request, 'contact.html', context=context)
+
+    except Exception as e:
+        print(e)
+        data['error'] = "something wrrong please try later !!!"
+        context = {"data": data}
+        return render(request, 'contact.html', context=context)
