@@ -6,6 +6,7 @@
     * make all pages dynamic
     * search for add to cart example Ajax
     * checkout page 
+    * create add/del cart/checkout/payment 
 
 `Front End`:
 

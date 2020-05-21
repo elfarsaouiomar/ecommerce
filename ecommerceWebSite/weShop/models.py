@@ -69,5 +69,7 @@ class Product(Model):
 
 class Cart(Model):
     product = ManyToManyField(Product)
+    quntity = IntegerField(default=1)
+    total = FloatField()
 
 

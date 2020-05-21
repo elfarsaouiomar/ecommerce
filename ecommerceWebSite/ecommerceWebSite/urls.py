@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from . import settings
+from .settings import MEDIA_ROOT, MEDIA_URL, DEBUG
 from django.contrib.staticfiles.urls import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
@@ -25,9 +25,5 @@ urlpatterns = [
     url(r'', include('weShop.urls'))
 ]
 
-
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-#urlpatterns += staticfiles_urlpatterns()
-#urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+if DEBUG:
+    urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT)

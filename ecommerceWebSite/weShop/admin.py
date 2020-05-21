@@ -1,5 +1,5 @@
 from django.contrib import admin
-from models import Subscribe, Contact, Product, Category, Size, Service
+from .models import Subscribe, Contact, Product, Category, Size, Service
 
 admin.site.register(Subscribe)
 admin.site.register(Contact)

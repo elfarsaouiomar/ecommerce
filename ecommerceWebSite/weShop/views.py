@@ -3,9 +3,9 @@ from django.http import HttpResponse
 from json import dumps
 from validate_email import validate_email
 
-from app.ContactApp import ContactApp
-from dto.ContactDto import ContactDto
-from .models import Subscribe, Product, Category, Service
+from .app.ContactApp import ContactApp
+from .dto.ContactDto import ContactDto
+from .models import Subscribe, Product, Category, Service, Cart
 
 
 
@@ -81,7 +81,10 @@ def singleProduct(request, slug):
 def cart(request):
     return render(request, 'cart.html')
 
-def addTocart(request):
+def addTocart(request, slug):
+    product = Product.objects.filter(id=slug)
+    cart = Cart.objects.add
+
     pass
 
 def deleteFromCart(request):
@@ -98,26 +101,27 @@ def subscribe(request):
     try:
         if request.method != "POST":
             data['response'] = 'Only POST request supported'
+            return HttpResponse(dumps(data), content_type="application/json")
 
         email = request.POST.get('email')
-        if email is None:
+        if len(email) == 0:
             data['response'] = 'email is required'
+            return HttpResponse(dumps(data), content_type="application/json")
 
         is_valid = validate_email(email)
         if is_valid:
             subscribe = Subscribe()
             subscribe.email = email
             subscribe.save()
-            data['response'] = 'thank you for subscribe'
+            data['response'] = 'Thank you for subscribe'
+            return HttpResponse(dumps(data), content_type="application/json")
         else:
-            data['response'] = 'email is invalid'
+            data['response'] = 'Email is invalid'
+            return HttpResponse(dumps(data), content_type="application/json")
 
     except Exception as e:
         print(e)
         data['response'] = "somethings wrrong !"
-
-    finally:
-        return HttpResponse(dumps(data), content_type="application/json")
 
 
 ################### Page Contact ####################################
