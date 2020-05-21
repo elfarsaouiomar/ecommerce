@@ -11,22 +11,23 @@
 
 <script>
     $("input[value=Send]").click(function() {
-        var email = $("input[type=email]")
+        var email = $("input[type=email]");
         var message =  $("#message");
+        var token = $('meta[name=token]').attr("content");
 
         $.ajax({
-        url: '{% url "subscribe" %}',
-        type:'POST',
-        headers: {'X-CSRFToken': '{{ csrf_token }}'}, // for csrf token
-        data: {
-            'email': email.val(),
-        },
-        success: function (data) {
-            if (data.length != 0){
-                message.text(data.response)
-                email.val('')
+            url: '{% url "subscribe" %}',
+            type:'POST',
+            headers: {'X-CSRFToken':  token},
+            data: {
+                'email': email.val(),
+            },
+            success: function (data) {
+                if (data.length != 0){
+                    message.text(data.response)
+                    email.val('')
+                }
             }
-        },
         });
     });
 
