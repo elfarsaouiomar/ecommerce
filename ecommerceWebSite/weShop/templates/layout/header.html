@@ -19,12 +19,21 @@
             <div class="col-6 col-md-4 order-3 order-md-3 text-right">
               <div class="site-top-icons">
                 <ul>
-                  <li><a href="#"><span class="icon icon-person"></span></a></li>
-                  <li><a href="#"><span class="icon icon-heart-o"></span></a></li>
+                  {% if user.is_authenticated %}
+                        <li><a href="{% url 'accounts:logout'%}" title="lougout">{{ user.username }}</a></li>
+                  {% else %}
+                        <li><a href="{% url 'accounts:login'%}" title="login" ><span class="icon icon-person"></span></a></li>
+                  {% endif %}
+
                   <li>
+
                     <a href="{% url 'cart' %}" class="site-cart">
                       <span class="icon icon-shopping_cart"></span>
+                      {% if request.session.cart %}
+                      <span class="count">{{ request.session.cart }}</span>
+                      {% else %}
                       <span class="count">0</span>
+                      {% endif %}
                     </a>
                   </li>
                   <li class="d-inline-block d-md-none ml-md-0"><a href="#" class="site-menu-toggle js-menu-toggle"><span class="icon-menu"></span></a></li>
@@ -41,6 +50,7 @@
             <li><a href="{% url 'index' %}">Home</a></li>
             <li><a href="{% url 'shop' %}">Shop</a></li>
             <li><a href="{% url 'contact' %}">Contact</a></li>
+
           </ul>
         </div>
       </nav>

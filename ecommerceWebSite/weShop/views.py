@@ -1,12 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404 , redirect
 from django.http import HttpResponse
 from json import dumps
+from django.contrib.auth.decorators import login_required
 from validate_email import validate_email
 
 from .app.ContactApp import ContactApp
 from .dto.ContactDto import ContactDto
-from .models import Subscribe, Product, Category, Service, Cart
-
+from .models import Subscribe, Product, Category, Service, OrderItem, Order
 
 
 
@@ -30,15 +30,14 @@ def parmsToMaps(req, args):
 
 def index(request):
     context = {}
-    catigorys = Category.objects.all()
-    services = Service.objects.all()
-    mostSalles = Product.objects.all().order_by('-rank')[:6]
+    catigorys = Category.objects.all() # get all categorys
+    services = Service.objects.all() # get all services
+    mostSalles = Product.objects.all().order_by('-rank')[:6] # get last 6 items
 
     context["mostSalles"] = mostSalles
     context["catigorys"] = catigorys
     context["services"] = services
     return render(request, 'index.html', context=context)
-
 
 def Search(request):
     pass
@@ -79,13 +78,36 @@ def singleProduct(request, slug):
         print (e)
 
 def cart(request):
-    return render(request, 'cart.html')
+    context = {}
+    if request.user.is_authenticated:
+        carts = OrderItem.objects.filter(user=request.user)
+        context["carts"] = carts
+    return render(request, 'cart.html', context=context)
 
+@login_required()
 def addTocart(request, slug):
-    product = Product.objects.filter(id=slug)
-    cart = Cart.objects.add
+    data = {}
+    try:
+        item = get_object_or_404(Product, id=slug)
 
-    pass
+        oldOrders = OrderItem.objects.filter(user=request.user, product=item)
+
+        if len(oldOrders) == 0:
+            OrderItem.objects.get_or_create(product=item, user=request.user)
+            data["cart"] = "add to cart"
+            return redirect('cart')
+
+        else:
+            for oldOrder in oldOrders:
+                oldOrder.quantity += 1
+                oldOrder.save()
+            return redirect('cart')
+
+    except (KeyError, Product.DoesNotExist):
+        return redirect('shop')
+
+def getItemIncart(user):
+    return len(OrderItem.objects.filter(user=user))
 
 def deleteFromCart(request):
     pass
@@ -122,7 +144,6 @@ def subscribe(request):
     except Exception as e:
         print(e)
         data['response'] = "somethings wrrong !"
-
 
 ################### Page Contact ####################################
 def contact(request):
