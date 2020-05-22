@@ -7,12 +7,16 @@
 - [ ] search for add to cart example Ajax
 - [ ] checkout page 
 - [ ] create add/del cart/checkout/payment 
+- [ ] add validation to redirect
+- [ ] refresh sessin cart on all pages
+- [ ] work security of app 
 
 
 `Front End`:
 - [ ] fix bug contact page after submit form
 - [ ] make all content dynamic
-- [ ] add html editor in admin page
+- [ ] add html editor in manager page
+- [ ] style page cart if it's emty 
 
 
 #### add new function
