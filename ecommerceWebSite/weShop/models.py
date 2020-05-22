@@ -3,6 +3,7 @@ from django.db.models import Model, AutoField, EmailField,\
     CharField, TextField, ImageField, BooleanField, DateField,\
     IntegerField, FloatField, ForeignKey, PROTECT, ManyToManyField
 from datetime import datetime, date
+from django.conf import settings
 
 
 class Subscribe(Model):
@@ -11,7 +12,6 @@ class Subscribe(Model):
 
     def __str__(self):
         return self.email
-
 
 class Contact(Model):
     fname = CharField(max_length=30, blank=False, null=True)
@@ -22,7 +22,6 @@ class Contact(Model):
 
     def __str__(self):
         return self.fname
-
 
 class Size(Model):
     size = CharField(max_length=40, primary_key=True)
@@ -45,7 +44,6 @@ class Category(Model):
     def __str__(self):
         return self.name
 
-
 class Product(Model):
 
     id = AutoField(primary_key=True)
@@ -66,10 +64,30 @@ class Product(Model):
     def __str__(self):
         return self.name
 
+class OrderItem(Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.IntegerField(default=1)
+    dateDeCreation = DateField(auto_now_add=True)
 
-class Cart(Model):
-    product = ManyToManyField(Product)
-    quntity = IntegerField(default=1)
-    total = FloatField()
+    def __str__(self):
+        return "new Order by  {0}".format(self.user)
+
+    def get_total_item_price(self):
+        return self.quantity * self.product.price
 
 
+class Order(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    items = models.ManyToManyField(OrderItem)
+
+    """
+        ref_code = models.CharField(max_length=20, blank=True, null=True)
+        start_date = models.DateTimeField(auto_now_add=True)
+        ordered_date = models.DateTimeField()
+        ordered = models.BooleanField(default=False)
+        being_delivered = models.BooleanField(default=False)
+        received = models.BooleanField(default=False)
+        refund_requested = models.BooleanField(default=False)
+        refund_granted = models.BooleanField(default=False)
+    """
