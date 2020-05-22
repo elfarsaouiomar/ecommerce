@@ -1,0 +1,23 @@
+{% extends 'layout/base.html' %}}
+
+{% block content %}
+    <div class="row">
+            <div class="col-md-6 form-group login">
+    	<form class="site-form" action="{% url 'accounts:login' %}" method="POST">
+        {% csrf_token %}
+            {% if request.GET.next %}
+                <input type="hidden" name="next" value="{{ request.GET.next }}">
+            {% endif %}
+        {{ form }}
+        <input class="btn btn-info" type="submit" value="login">
+    </form>
+
+                <a href="{% url 'accounts:signup' %}">signup</a>
+
+                <a href="{% url 'accounts:login' %}">forget Password</a>
+
+    </div>
+    </div>
+
+
+{% endblock %}
