@@ -9,7 +9,6 @@ from .dto.ContactDto import ContactDto
 from .models import Subscribe, Product, Category, Service, OrderItem, Order
 
 
-
 def parmsToMaps(req, args):
     """
     :param req: reuqest type post, GET
@@ -75,42 +74,83 @@ def singleProduct(request, slug):
                 context['products'] = product
                 return render(request, 'shop-single.html', context=context)
     except Exception as e:
-        print (e)
+        print(e)
 
 def cart(request):
     context = {}
     if request.user.is_authenticated:
         carts = OrderItem.objects.filter(user=request.user)
         context["carts"] = carts
+        context["total"] = getTotal(carts)
     return render(request, 'cart.html', context=context)
 
 @login_required()
-def addTocart(request, slug):
+def addOrUpdate(request):
     data = {}
     try:
+        if request.method != "POST":
+            data['response'] = 'Only POST request supported'
+            data['status'] = 405
+            return HttpResponse(dumps(data), content_type="application/json")
+
+        slug = request.POST.get('slug')
+        quantity = request.POST.get('quantity')
+
+        if slug is None:
+            data['response'] = 'all parms is required'
+            data['status'] = 400
+            return HttpResponse(dumps(data), content_type="application/json")
+
+        checkQuantity = isInit(num=quantity)
+
+        if not checkQuantity:
+            data['response'] = 'negative number is not acceptable'
+            data['status'] = 400
+            return HttpResponse(dumps(data), content_type="application/json")
+
+
         item = get_object_or_404(Product, id=slug)
 
         oldOrders = OrderItem.objects.filter(user=request.user, product=item)
 
         if len(oldOrders) == 0:
-            OrderItem.objects.get_or_create(product=item, user=request.user)
-            data["cart"] = "add to cart"
-            return redirect('cart')
+            OrderItem.objects.get_or_create(product=item, user=request.user, quantity=quantity)
+            data["response"] = "add to cart"
+            data['status'] = 200
+            return HttpResponse(dumps(data), content_type="application/json")
 
         else:
             for oldOrder in oldOrders:
-                oldOrder.quantity += 1
+                if quantity is None:
+                    oldOrder.quantity += 1
+                else:
+                    oldOrder.quantity = int(quantity)
                 oldOrder.save()
-            return redirect('cart')
+                data["response"] = "Update cart"
+                data['status'] = 200
+                return HttpResponse(dumps(data), content_type="application/json")
 
     except (KeyError, Product.DoesNotExist):
-        return redirect('shop')
+        data["response"] = "Something is wrong"
+        data['status'] = 500
+        return HttpResponse(dumps(data), content_type="application/json")
+
+def getTotal(carts):
+    total = 0
+    for cart in carts:
+        total += cart.get_total_item_price()
+    return total
 
 def getItemIncart(user):
     return len(OrderItem.objects.filter(user=user))
 
-def deleteFromCart(request):
-    pass
+@login_required()
+def deleteFromCart(request, slug):
+
+    item = get_object_or_404(Product, id=slug)
+    OrderItem.objects.filter(product=item).delete()
+
+    return redirect('cart')
 
 def checkout(request):
     return render(request, 'checkout.html')
@@ -180,3 +220,20 @@ def contact(request):
         data['error'] = "something wrrong please try later !!!"
         context = {"data": data}
         return render(request, 'contact.html', context=context)
+
+
+
+
+
+################### class Utils ######################################
+
+
+def isInit(num):
+    try:
+        num = int(num)
+        if isinstance(num, int):
+            if int(num) > 0:
+                return True
+        return False
+    except ValueError:
+        return False

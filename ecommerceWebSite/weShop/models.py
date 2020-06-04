@@ -70,6 +70,7 @@ class OrderItem(Model):
     quantity = models.IntegerField(default=1)
     dateDeCreation = DateField(auto_now_add=True)
 
+
     def __str__(self):
         return "new Order by  {0}".format(self.user)
 

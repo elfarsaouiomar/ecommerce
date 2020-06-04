@@ -20,7 +20,6 @@
         {% if carts %}
 
         <div class="row mb-5">
-          <form class="col-md-12" method="post">
             <div class="site-blocks-table">
               <table class="table table-bordered">
                 <thead>
@@ -37,8 +36,6 @@
 
                 {% for cart in carts %}
 
-
-
                   <tr>
                     <td class="product-thumbnail">
                       <img src="{{ cart.product.image.url }}" alt="{{ product.image.name }}" class="img-fluid">
@@ -49,36 +46,34 @@
                     <td>{{cart.product.price }} $</td>
                     <td>
                       <div class="input-group mb-3" style="max-width: 120px;">
-                        <div class="input-group-prepend">
-                          <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
-                        </div>
-                        <input type="text" class="form-control text-center" value="{{ cart.quantity }}" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
-                        <div class="input-group-append">
-                          <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
-                        </div>
+                        <input type="number" min="1" onclick="addOrUpdateCart(this.value, {{ cart.product.id }})" class="form-control text-center" value="{{ cart.quantity }}" aria-label="Example text with button addon" aria-describedby="button-addon1">
                       </div>
 
                     </td>
+
                     <td>{{ cart.get_total_item_price }} $</td>
-                    <td><a href="#" class="btn btn-primary btn-sm">X</a></td>
+                    <td><a href="{% url 'deleteFromCart' slug=cart.product.id  %}" title="delete item from cart" class="btn btn-primary btn-sm">X</a></td>
                   </tr>
+
+                  {{cart.get_total}}
                 {% endfor %}
+
+
                 </tbody>
               </table>
+
+
             </div>
-          </form>
+
+
         </div>
 
         <div class="row">
           <div class="col-md-6">
             <div class="row mb-5">
-              <div class="col-md-6 mb-3 mb-md-0">
-                <button class="btn btn-primary btn-sm btn-block">Update Cart</button>
-              </div>
-              <div class="col-md-6">
-                <button class="btn btn-outline-primary btn-sm btn-block">Continue Shopping</button>
-              </div>
+                <a class="btn btn-outline-primary btn-sm btn-block" title="Continue Shopping" href="{% url 'shop' %}">Continue Shopping</a>
             </div>
+            <!--
             <div class="row">
               <div class="col-md-12">
                 <label class="text-black h4" for="coupon">Coupon</label>
@@ -91,38 +86,37 @@
                 <button class="btn btn-primary btn-sm">Apply Coupon</button>
               </div>
             </div>
+            -->
           </div>
+
           <div class="col-md-6 pl-5">
             <div class="row justify-content-end">
               <div class="col-md-7">
+
                 <div class="row">
                   <div class="col-md-12 text-right border-bottom mb-5">
                     <h3 class="text-black h4 text-uppercase">Cart Totals</h3>
                   </div>
                 </div>
-                <div class="row mb-3">
-                  <div class="col-md-6">
-                    <span class="text-black">Subtotal</span>
-                  </div>
-                  <div class="col-md-6 text-right">
-                    <strong class="text-black">$230.00</strong>
-                  </div>
-                </div>
+
                 <div class="row mb-5">
                   <div class="col-md-6">
                     <span class="text-black">Total</span>
                   </div>
+
                   <div class="col-md-6 text-right">
-                    <strong class="text-black">$230.00</strong>
+                    <strong class="text-black">{{total}} $</strong>
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="col-md-12">
-                    <button class="btn btn-primary btn-lg py-3 btn-block" onclick="window.location='checkout.html'">Proceed To Checkout</button>
+                    <a class="btn btn-primary btn-lg py-3 btn-block" href="{% url 'checkout' %}" >Proceed To Checkout</a>
                   </div>
                 </div>
+
               </div>
+
             </div>
           </div>
         </div>

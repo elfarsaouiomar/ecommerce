@@ -8,13 +8,34 @@
 <script src="{% static 'js/aos.js' %}"></script>
 <script src="{% static 'js/main.js' %}"></script>
 <script src="{% static 'js/script.js' %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<script>
+    toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "newestOnTop": true,
+        "progressBar": true,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
+</script>
 
 <script>
+    var token = $('meta[name=token]').attr("content");
+    
     $("input[value=Send]").click(function() {
         var email = $("input[type=email]");
         var message =  $("#message");
-        var token = $('meta[name=token]').attr("content");
-
+        
         $.ajax({
             url: '{% url "subscribe" %}',
             type:'POST',
@@ -30,5 +51,54 @@
             }
         });
     });
+
+
+
+
+    function add(){
+        var quantity = $("input[name=quantity]").val();
+        var productId = $("input[name=slug]").val();
+        addOrUpdateCart(quantity,productId)
+    }
+
+    function addOrUpdateCart(quantity,productId){
+        $.ajax({
+            url: '{% url "addOrUpdate" %}',
+            type: 'POST',
+            headers: {'X-CSRFToken':  token},
+            data: {
+                'slug': productId,
+                'quantity': quantity,
+            },
+            success: function (data, textStatus, xhr) {
+
+                if (data.length != 0){
+                    
+                    var statusCode = data.status;
+
+                    if(statusCode == 405){
+                        // methed else POST
+                        toastr.warning(data.response);
+                    }
+                    if(statusCode == 400){
+                        // required all params
+                        toastr.warning(data.response);
+                    }
+                    if(statusCode == 200){
+                        //success
+                        toastr.success(data.response);
+                    }
+                    if(statusCode == 500){
+                        // failed
+                        toastr.warning(data.response);
+                    }
+                }
+            },
+            error: function(data, textStatus, xhr){
+                toastr.error('failed please try later ');
+            }
+        });
+        }
+
 
 </script>

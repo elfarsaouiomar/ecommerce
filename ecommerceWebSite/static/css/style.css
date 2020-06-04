@@ -16,9 +16,16 @@ body {
 a {
   -webkit-transition: .3s all ease;
   -o-transition: .3s all ease;
-  transition: .3s all ease; }
-  a:hover {
-    text-decoration: none; }
+  transition: .3s all ease;
+
+}
+
+.buy-now{
+    color: white !important;
+}
+a:hover {
+   text-decoration: none;
+}
 
 .text-black {
   color: #000; }
