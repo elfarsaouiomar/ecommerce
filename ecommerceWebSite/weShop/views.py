@@ -4,9 +4,10 @@ from json import dumps
 from django.contrib.auth.decorators import login_required
 from validate_email import validate_email
 
+from .forms import orderForm
 from .app.ContactApp import ContactApp
 from .dto.ContactDto import ContactDto
-from .models import Subscribe, Product, Category, Service, OrderItem, Order
+from .models import Subscribe, Product, Category, Service, OrderItem, Order, Country
 
 
 def parmsToMaps(req, args):
@@ -87,6 +88,7 @@ def cart(request):
 @login_required()
 def addOrUpdate(request):
     data = {}
+
     try:
         if request.method != "POST":
             data['response'] = 'Only POST request supported'
@@ -117,6 +119,8 @@ def addOrUpdate(request):
             OrderItem.objects.get_or_create(product=item, user=request.user, quantity=quantity)
             data["response"] = "add to cart"
             data['status'] = 200
+            data['incart'] = getItemIncart(request.user)
+            request.session['card'] = getItemIncart(request.user) # update user session with the new number of items
             return HttpResponse(dumps(data), content_type="application/json")
 
         else:
@@ -124,10 +128,12 @@ def addOrUpdate(request):
                 if quantity is None:
                     oldOrder.quantity += 1
                 else:
-                    oldOrder.quantity = int(quantity)
+                    oldOrder.quantity += int(quantity)
                 oldOrder.save()
                 data["response"] = "Update cart"
                 data['status'] = 200
+                data['incart'] = getItemIncart(request.user)
+                request.session['card'] = getItemIncart(request.user) # update user session with the new number of items
                 return HttpResponse(dumps(data), content_type="application/json")
 
     except (KeyError, Product.DoesNotExist):
@@ -142,18 +148,64 @@ def getTotal(carts):
     return total
 
 def getItemIncart(user):
+    """
+    this function used to caclcule number of itme in cart for the current user
+    :param user: user who send the request
+    :return: total items in cart
+    """
     return len(OrderItem.objects.filter(user=user))
 
 @login_required()
 def deleteFromCart(request, slug):
-
     item = get_object_or_404(Product, id=slug)
     OrderItem.objects.filter(product=item).delete()
-
+    request.session['card'] = getItemIncart(request.user)
     return redirect('cart')
 
+@login_required()
 def checkout(request):
-    return render(request, 'checkout.html')
+    context = {}
+    try:
+
+        if request.method == 'GET':
+            carts = OrderItem.objects.filter(user=request.user)
+            countrys = Country.objects.all()
+
+            context["countrys"] = countrys
+            context["carts"] = carts
+            context["total"] = getTotal(carts)
+            form = orderForm()
+            context['form'] = form
+            return render(request, 'checkout.html', context=context, )
+
+        elif request.method == 'POST':
+
+            data = request.POST
+            form = orderForm(data=data)
+
+            if form.is_valid():
+                form.save()
+
+
+                return redirect('thankyou')
+
+
+            carts = OrderItem.objects.filter(user=request.user)
+            countrys = Country.objects.all()
+
+            context["countrys"] = countrys
+            context["carts"] = carts
+            context["total"] = getTotal(carts)
+            context['errors'] = form.errors
+            return render(request, 'checkout.html', context=context)
+
+        else:
+            pass
+
+    except Exception as e:
+        print(e)
+
+
 
 def thankyou(request):
     return render(request, 'thankyou.html')

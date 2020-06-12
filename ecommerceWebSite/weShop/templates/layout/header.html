@@ -29,10 +29,11 @@
 
                     <a href="{% url 'cart' %}" class="site-cart">
                       <span class="icon icon-shopping_cart"></span>
-                      {% if request.session.cart %}
-                      <span class="count">{{ request.session.cart }}</span>
+                      {% if request.session.card %}
+                      {% comment %} this code here is used to show user the number of item(s) in the cart{% endcomment %}
+                        <span class="count" id="incart">{{ request.session.card }}</span>
                       {% else %}
-                      <span class="count">0</span>
+                        <span class="count" id="incart">0</span>
                       {% endif %}
                     </a>
                   </li>

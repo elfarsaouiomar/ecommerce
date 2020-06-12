@@ -57,7 +57,12 @@
               </div>
               </div>
 
+             {% if user.is_authenticated %}
                 <a onclick="add()" class="buy-now btn btn-sm btn-primary">Add To Cart</a>
+              {% else %}
+              <a href="{% url 'accounts:login'%}" class="buy-now btn btn-sm btn-primary" title="login" >login befor Add To Cart</a>
+              {% endif %}
+
             </div>
           </div>
           {% endfor %}

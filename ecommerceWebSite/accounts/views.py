@@ -3,8 +3,8 @@ from __future__ import unicode_literals
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout
-
 from weShop.models import OrderItem
+from weShop.views import getItemIncart
 
 urlsAllowtoRedirect = []
 
@@ -29,7 +29,7 @@ def login_view(request):
             login(request, user)
             if 'next' in request.POST:
                 return redirect(request.POST.get('next'))
-            request.session['cart'] = getItemIncart(user)
+            request.session['card'] = getItemIncart(request.user)
             return redirect('shop')
     else:
         form = AuthenticationForm()
@@ -40,6 +40,3 @@ def logout_view(request):
     logout(request)
     return redirect('/')
 
-
-def getItemIncart(user):
-    return len(OrderItem.objects.filter(user=user))

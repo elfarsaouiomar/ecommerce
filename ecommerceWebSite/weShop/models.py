@@ -45,7 +45,6 @@ class Category(Model):
         return self.name
 
 class Product(Model):
-
     id = AutoField(primary_key=True)
     name = CharField(max_length=40, blank=False, null=True)
     summary = TextField(max_length=100, blank=False, null=True)
@@ -78,17 +77,33 @@ class OrderItem(Model):
         return self.quantity * self.product.price
 
 
+class Country(Model):
+    name = CharField(max_length=50, primary_key=True, blank=False, null=False)
+
+    def __str__(self):
+        return self.name
+
 class Order(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     items = models.ManyToManyField(OrderItem)
+    country = models.OneToOneField(Country, on_delete=PROTECT, default='Maroc')
+    fName = CharField(max_length=100, blank=False, null=True)
+    lName = CharField(max_length=100, blank=False, null=True)
+    adress = CharField(max_length=300, blank=False, null=True)
+    state = CharField(max_length=40, blank=False, null=True)
+    codePostal = CharField(max_length=40, blank=False, null=True)
+    email = CharField(max_length=70, blank=False, null=True)
+    phone = CharField(max_length=10, blank=False, null=True)
+    note = TextField(max_length=300, blank=False, null=True)
 
-    """
-        ref_code = models.CharField(max_length=20, blank=True, null=True)
-        start_date = models.DateTimeField(auto_now_add=True)
-        ordered_date = models.DateTimeField()
-        ordered = models.BooleanField(default=False)
-        being_delivered = models.BooleanField(default=False)
-        received = models.BooleanField(default=False)
-        refund_requested = models.BooleanField(default=False)
-        refund_granted = models.BooleanField(default=False)
-    """
+    def __str__(self):
+        return "{0} make new order ".format(self.user)
+
+
+
+
+
+
+
+
+
