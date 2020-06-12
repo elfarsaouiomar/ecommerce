@@ -4,11 +4,11 @@
 `Back End`:
 - [x] upgrade project form 1.11 to 3.0
 - [ ] make all pages dynamic
-- [ ] search for add to cart example Ajax
-- [ ] checkout page 
+- [x] add to cart Ajax
+- [x] checkout page { not finished }
 - [ ] create add/del cart/checkout/payment 
 - [ ] add validation to redirect
-- [ ] refresh sessin cart on all pages
+- [x] refresh sessin cart on all pages
 - [ ] work security of app 
 
 
