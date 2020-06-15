@@ -51,6 +51,7 @@ def categorys(request, slug):
 def singleProduct(request, slug):
     context = {}
     try:
+        # TODO add validation more validation
         mostSalles = Product.objects.all().order_by('-rank')[:6]  # get last 6 items
         product = Product.objects.filter(id=slug)
         context["mostSalles"] = mostSalles
