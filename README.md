@@ -22,10 +22,10 @@ python3 manage.py runserver
 
 
 `Front End`:
-- [ ] fix bug contact page after submit form
+- [x] fix bug contact page after submit form
 - [ ] make all content dynamic
 - [ ] add html editor in manager page
-- [ ] style page cart if it's emty 
+- [x] style page cart if it's emty 
 
 
 #### add new function

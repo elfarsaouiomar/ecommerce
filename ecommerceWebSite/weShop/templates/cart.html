@@ -52,17 +52,10 @@
                     <td>{{ cart.get_total_item_price }} $</td>
                     <td><a href="{% url 'deleteFromCart' slug=cart.product.id  %}" title="delete item from cart" class="btn btn-primary btn-sm">X</a></td>
                   </tr>
-                  
                 {% endfor %}
-
-
                 </tbody>
               </table>
-
-
             </div>
-
-
         </div>
 
         <div class="row">
@@ -70,20 +63,6 @@
             <div class="row mb-5">
                 <a class="btn btn-outline-primary btn-sm btn-block" title="Continue Shopping" href="{% url 'shop' %}">Continue Shopping</a>
             </div>
-            <!--
-            <div class="row">
-              <div class="col-md-12">
-                <label class="text-black h4" for="coupon">Coupon</label>
-                <p>Enter your coupon code if you have one.</p>
-              </div>
-              <div class="col-md-8 mb-3 mb-md-0">
-                <input type="text" class="form-control py-3" id="coupon" placeholder="Coupon Code">
-              </div>
-              <div class="col-md-4">
-                <button class="btn btn-primary btn-sm">Apply Coupon</button>
-              </div>
-            </div>
-            -->
           </div>
 
           <div class="col-md-6 pl-5">
@@ -120,8 +99,8 @@
         {% else %}
 
         <div class="row">
-              <div class="offset-2 col-md-6">
-                Cart is empty
+              <div class="col-md-12">
+                <p class="cartEmpty">Cart is empty</p>
                 <a href="{% url 'shop' %}" class="btn btn-outline-primary btn-sm btn-block">Continue Shopping</a>
               </div>
         </div>
