@@ -9,6 +9,7 @@ from django.conf import settings
 class Subscribe(Model):
     id = AutoField(primary_key=True)
     email = EmailField(max_length=254)
+    dateDeCreation = DateField(auto_now_add=True)
 
     def __str__(self):
         return self.email
