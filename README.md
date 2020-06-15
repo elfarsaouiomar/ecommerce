@@ -1,7 +1,7 @@
 # Ecommerce Website using Django
 
 
-###Installation
+### Installation
 ```
 git clone https://github.com/elfarsaouiomar/ecommerce.git
 cd ecommerce/
