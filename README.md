@@ -1,5 +1,13 @@
 # Ecommerce Website using Django
 
+
+###Installation
+```
+git clone https://github.com/elfarsaouiomar/ecommerce.git
+cd ecommerce/
+sudo pip install -r requirements.txt
+```
+
 #### Todo  List
 `Back End`:
 - [x] upgrade project form 1.11 to 3.0
