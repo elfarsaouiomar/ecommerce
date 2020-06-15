@@ -4,29 +4,11 @@ from json import dumps
 from django.contrib.auth.decorators import login_required
 from validate_email import validate_email
 
-from .forms import orderForm
-from .app.ContactApp import ContactApp
-from .dto.ContactDto import ContactDto
-from .models import Subscribe, Product, Category, Service, OrderItem, Order, Country
-
-
-def parmsToMaps(req, args):
-    """
-    :param req: reuqest type post, GET
-    :param args: list of params
-    :return: dict contain params and value
-    """
-    params = {}
-    for param in args:
-        if req.method == "POST":
-            value = req.POST.get(param)
-            params[param] = value
-
-        elif req.method == "GET":
-            value = req.GET.get(param)
-            if value is not None:
-                params[param] = value
-    return params
+from .AbstractController import parmsToMaps
+from weShop.forms import orderForm
+from weShop.Application.ContactApp import ContactApp
+from weShop.Dto.ContactDto import ContactDto
+from weShop.Models.models import Subscribe, Product, Category, Service, OrderItem, Order, Country
 
 def index(request):
     context = {}
@@ -205,8 +187,6 @@ def checkout(request):
     except Exception as e:
         print(e)
 
-
-
 def thankyou(request):
     return render(request, 'thankyou.html')
 
@@ -236,50 +216,37 @@ def subscribe(request):
     except Exception as e:
         print(e)
         data['response'] = "somethings wrrong !"
+        return HttpResponse(dumps(data), content_type="application/json")
 
 ################### Page Contact ####################################
 def contact(request):
     data = {}
-    context = {}
     try:
         if request.method == 'GET':
             return render(request, 'contact.html')
 
         elif request.method == 'POST':
-            postParams = ['fname', 'lname', 'email', 'subject', 'message']
-            params = parmsToMaps(request, postParams)
-            contactDto = ContactDto(params=params)
-            contactDto.validate()
+            postParams = ['fname', 'lname', 'email', 'subject', 'message'] # expected params
+            params = parmsToMaps(request, postParams) # extrcat params form request
+            contactDto = ContactDto(params=params) # input dto
+            outputDto = ContactApp.add(contactDto) # la couche app
+            data['data'] = outputDto # output dto
 
-            # check if dto return error
-            if len(contactDto.errors) != 0:
-                context["data"] = contactDto.errors
-                context['postParams'] = params
-                return render(request, 'contact.html', context=context)
-            else:
-                contactApp = ContactApp()
-                contactApp.add(contactDto.data)
-                data['response'] = "thank you for your message"
-                context = {"data": data}
-                return render(request, 'contact.html', context=context)
+            return HttpResponse(dumps(data), content_type="application/json")
+
         else:
             data['error'] = 'Only POST, GET request supported'
             context = {"data": data}
             return render(request, 'contact.html', context=context)
 
     except Exception as e:
-        print(e)
+        raise Exception(e)
         data['error'] = "something wrrong please try later !!!"
-        context = {"data": data}
-        return render(request, 'contact.html', context=context)
-
-
+        return HttpResponse(dumps(data), content_type="application/json")
 
 
 
 ################### class Utils ######################################
-
-
 def isInit(num):
     try:
         num = int(num)

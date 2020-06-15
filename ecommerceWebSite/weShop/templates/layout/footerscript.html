@@ -31,11 +31,9 @@
 
 <script>
     var token = $('meta[name=token]').attr("content");
-    
     $("input[value=Send]").click(function() {
         var email = $("input[type=email]");
         var message =  $("#message");
-        
         $.ajax({
             url: '{% url "subscribe" %}',
             type:'POST',
@@ -72,11 +70,8 @@
                 'quantity': quantity,
             },
             success: function (data, textStatus, xhr) {
-
                 if (data.length != 0){
-                    
                     var statusCode = data.status;
-
                     if(statusCode == 405){
                         // methed else POST
                         toastr.warning(data.response);
@@ -100,7 +95,47 @@
                 toastr.error('failed please try later ');
             }
         });
-        }
+    }
 
+
+    $.ajax({
+    //beforeSubmit: $("#contactform").validate(),
+    // All other ajax here
+    
+    }); //This just submits the form without validating
+
+       
+       
+    // submit Contact form 
+    $("#contactUs").click(function() {
+        var fname = $("#c_fname").val()
+        var lname = $("#c_lname").val()
+        var email = $("#c_email").val()
+        var subject = $("#c_subject").val()
+        var message = $("#c_message").val()
+
+        var data = {
+            'fname':fname,
+            'lname':lname,
+            'email':email,
+            'subject':subject,
+            'message':message
+        }
+        
+        $.ajax({
+            url: '{% url "contact" %}',
+            type:'POST',
+            headers: {'X-CSRFToken':  token},
+            data: data,
+            success: function (data) {
+                if (data.length != 0){
+                    console.log(data)
+                }
+            }
+        });
+    });
+
+
+// $("#contactform")[0].reset()
 
 </script>

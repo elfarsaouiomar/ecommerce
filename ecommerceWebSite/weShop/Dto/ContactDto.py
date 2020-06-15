@@ -1,5 +1,5 @@
 from validate_email import validate_email
-
+from logging import ERROR
 
 class ContactDto:
     postParams = ['fname', 'lname', 'email', 'subject', 'message']
@@ -21,8 +21,12 @@ class ContactDto:
             subject = self.data.get('subject')
             message = self.data.get('message')
 
-            if fname is None or lname is None or email is None or subject is None or message is None:
-                errors['error'] = "All fields is required"
+            for para in self.postParams:
+                paramsvalue = self.data.get(para)
+                print("The parmas is {0} and the value is {1}".format(para, paramsvalue))
+                if not self.paramsLenght(parms=paramsvalue):
+                    self.errors['error'] = "{} is required".format(para)
+                    return self.errors
 
             if len(fname) > 30:
                 self.errors['fname'] = "max length for first name is 30"
@@ -39,15 +43,21 @@ class ContactDto:
             elif len(subject) < 2:
                 self.errors['subject'] = "min length for subject is 3"
 
-            if len(message) > 30:
+            if len(message) > 300:
                 self.errors['message'] = "max length for message is 300"
             elif len(message) < 2:
                 self.errors['message'] = "min length for message is 3"
 
             if not validate_email(email):
-                errors['email'] = "invalid email"
+                self.errors['email'] = "invalid email"
+                return self.errors
 
 
         except Exception as er:
-            print (er)
+            ERROR(er)
 
+    @staticmethod
+    def paramsLenght(parms):
+        if len(parms) == 0:
+            return False
+        return True

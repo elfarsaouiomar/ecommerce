@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Subscribe, Contact, Product, Category, Size, Service, Order, OrderItem, Country
+from weShop.Models.models import Subscribe, Contact, Product, Category, Size, Service, Order, OrderItem, Country
 
 admin.site.register(Subscribe)
 admin.site.register(Contact)

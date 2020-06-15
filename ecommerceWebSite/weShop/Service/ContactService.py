@@ -1,5 +1,4 @@
-from ..dao.ContactDao import ContactDao
-from ..models import Contact
+from weShop.Models.models import Contact
 
 class ContactService:
 

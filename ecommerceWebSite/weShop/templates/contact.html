@@ -32,19 +32,19 @@
         </div>
 
           <div class="col-md-6">
-            <form action="{% url 'contact' %}" method="post">
+            <form id="contactform">
               {% csrf_token %}
               <div class="p-3 p-lg-5 border">
                 <div class="form-group row">
                   <div class="col-md-6">
                     <label for="c_fname" class="text-black">First Name <span class="text-danger">*</span></label>
-                    <input type="text" required="required" class="form-control" value="{{ postParams.fname }}" id="c_fname" name="fname">
+                    <input type="text" required="required" class="form-control" value="{{ postParams.fname }}" id="c_fname" name="fname" placeholder="First name">
                     {% if data.fname %} <p class="text-danger">{{data.fname}}</p>{% endif %}
                   </div>
 
                   <div class="col-md-6">
                     <label for="c_lname" class="text-black">Last Name <span class="text-danger">*</span></label>
-                    <input type="text" required="required" class="form-control" value="{{ postParams.lname }}" id="c_lname" name="lname">
+                    <input type="text" required="required" class="form-control" value="{{ postParams.lname }}" id="c_lname" name="lname" placeholder="Last name">
                     {% if data.lname %} <p class="text-danger">{{data.lname}}</p>{% endif %}
                   </div>
                 </div>
@@ -60,7 +60,7 @@
                 <div class="form-group row">
                   <div class="col-md-12">
                     <label for="c_subject" class="text-black">Subject <span class="text-danger">*</span></label>
-                    <input type="text" required="required" class="form-control" value="{{ postParams.subject }}" id="c_subject" name="subject">
+                    <input type="text" required="required" class="form-control" value="{{ postParams.subject }}" id="c_subject" name="subject" placeholder="Subject">
                     {% if data.subject %} <p class="text-danger">{{data.subject}}</p>{% endif %}
                   </div>
                 </div>
@@ -68,16 +68,14 @@
                 <div class="form-group row">
                   <div class="col-md-12">
                     <label for="c_message" class="text-black">Message <span class="text-danger">*</span></label>
-                    <textarea name="message" placeholder="type your message here" id="c_message" cols="30" rows="7" class="form-control">
-                      {% if data.message %}{{postParams.message}}{% endif %}
-                    </textarea>
+                    <textarea name="message" placeholder="type your message here" id="c_message" required="required" cols="30" rows="7" class="form-control">{% if data.message %}{{postParams.message}}{% endif %}</textarea>
                     {% if data.message %} <p class="text-danger">{{data.message}}</p>{% endif %}
                   </div>
                 </div>
 
                 <div class="form-group row">
                   <div class="col-lg-12">
-                    <input type="submit" class="btn btn-primary btn-lg btn-block" value="Send Message">
+                    <button id="contactUs" type="button" class="btn btn-primary btn-lg btn-block">Send Message</button>
                   </div>
                 </div>
               </div>

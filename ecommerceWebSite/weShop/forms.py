@@ -1,6 +1,5 @@
 from django import forms
-from django.forms import ModelForm, Textarea
-from .models import Country, Order
+from weShop.Models.models import Country, Order
 
 class ossrderForm(forms.Form):
     lName = forms.CharField(max_length=100, label='Last name :', required=True, widget=forms.TextInput(attrs={'class': "form-control"}), error_messages={'required': 'Please enter your name'})
