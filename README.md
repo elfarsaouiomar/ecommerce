@@ -6,6 +6,7 @@
 git clone https://github.com/elfarsaouiomar/ecommerce.git
 cd ecommerce/
 sudo pip install -r requirements.txt
+python3 manage.py runserver
 ```
 
 #### Todo  List
