@@ -72,6 +72,7 @@
             success: function (data, textStatus, xhr) {
                 if (data.length != 0){
                     var statusCode = data.status;
+                   
                     if(statusCode == 405){
                         // methed else POST
                         toastr.warning(data.response);
@@ -97,14 +98,6 @@
         });
     }
 
-
-    $.ajax({
-    //beforeSubmit: $("#contactform").validate(),
-    // All other ajax here
-    
-    }); //This just submits the form without validating
-
-       
        
     // submit Contact form 
     $("#contactUs").click(function() {
@@ -115,8 +108,8 @@
         var message = $("#c_message").val()
 
         var data = {
-            'fname':fname,
-            'lname':lname,
+            'firstname':fname,
+            'lastname':lname,
             'email':email,
             'subject':subject,
             'message':message
@@ -129,7 +122,26 @@
             data: data,
             success: function (data) {
                 if (data.length != 0){
+                    
                     console.log(data)
+
+                    //var jsonResponse = JSON.parse(data)
+                    var statusCode = data.data.statusCode;
+
+                   
+                    if(statusCode == 405){
+                        toastr.warning(data.data.response);
+                    }
+                    
+                    if(statusCode == 422){
+                        toastr.warning(data.data.errors.error);
+                    }
+                    
+                   if(statusCode == 201){
+                        //success
+                        toastr.success(data.data.response);
+                        $("#contactform")[0].reset()
+                    }
                 }
             }
         });

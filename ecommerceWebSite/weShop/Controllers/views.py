@@ -226,7 +226,7 @@ def contact(request):
             return render(request, 'contact.html')
 
         elif request.method == 'POST':
-            postParams = ['fname', 'lname', 'email', 'subject', 'message'] # expected params
+            postParams = ['firstname', 'lastname', 'email', 'subject', 'message'] # expected params
             params = parmsToMaps(request, postParams) # extrcat params form request
             contactDto = ContactDto(params=params) # input dto
             outputDto = ContactApp.add(contactDto) # la couche app
@@ -236,6 +236,7 @@ def contact(request):
 
         else:
             data['error'] = 'Only POST, GET request supported'
+            data['statusCode']
             context = {"data": data}
             return render(request, 'contact.html', context=context)
 

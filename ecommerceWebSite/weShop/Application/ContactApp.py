@@ -1,5 +1,6 @@
 from weShop.Service.ContactService import ContactService
 from weShop.Dto.ContactDto import ContactDto
+from logging import ERROR
 
 class ContactApp:
 
@@ -8,20 +9,25 @@ class ContactApp:
 
     @staticmethod
     def add(contactDto):
+        try:
+            data = {}
+            contactService = ContactService()
+            contactDto.validate()
+            if len(contactDto.errors) != 0:
+                data['errors'] = contactDto.errors
+                data['statusCode'] = 422
+                return data
 
-        data = {}
-        contactService = ContactService()
+            contactService.add(contactDto.data)
+            data['response'] = "thank you for your message"
+            data['statusCode'] = 201
 
-        contactDto.validate()
+        except Exception as e:
+            ERROR(e)
 
-        if len(contactDto.errors) != 0:
-            return contactDto
+        finally:
+            return data
 
-        contactService.add(contactDto.data)
-        data['response'] = "thank you for your message"
-        data['status'] = "201"
-
-        return data
 
 
 
