@@ -14,14 +14,15 @@ class Subscribe(Model):
         return self.email
 
 class Contact(Model):
-    fname = CharField(max_length=30, blank=False, null=True)
-    lname = CharField(max_length=30, blank=False, null=True)
+    firstname = CharField(max_length=30, blank=False, null=False)
+    lastname = CharField(max_length=30, blank=False, null=False)
     email = EmailField(max_length=100)
     subject = CharField(max_length=50)
     message = TextField(max_length=300)
+    dateDeCreation = DateField(auto_now_add=True)
 
     def __str__(self):
-        return self.fname
+        return self.email
 
 class Size(Model):
     size = CharField(max_length=40, primary_key=True)

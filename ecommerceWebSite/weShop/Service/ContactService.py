@@ -7,8 +7,8 @@ class ContactService:
 
     def add(self, contactObj):
 
-        fname = contactObj.get('fname')
-        lname = contactObj.get('lname')
+        fname = contactObj.get('firstname')
+        lname = contactObj.get('lastname')
         email = contactObj.get('email')
         subject = contactObj.get('subject')
         message = contactObj.get('message')
