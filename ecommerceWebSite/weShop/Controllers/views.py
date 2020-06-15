@@ -51,13 +51,15 @@ def categorys(request, slug):
 def singleProduct(request, slug):
     context = {}
     try:
-        if request.method == "GET":
-            if slug:
-                product = Product.objects.filter(id=slug)
-                context['products'] = product
-                return render(request, 'shop-single.html', context=context)
+        mostSalles = Product.objects.all().order_by('-rank')[:6]  # get last 6 items
+        product = Product.objects.filter(id=slug)
+        context["mostSalles"] = mostSalles
+        context['products'] = product
+        return render(request, 'shop-single.html', context=context)
+
     except Exception as e:
         print(e)
+        return render(request, 'shop-single.html', context=context)
 
 def cart(request):
     context = {}
