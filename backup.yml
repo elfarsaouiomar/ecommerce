@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  monapp:
+    container_name: django-apps
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "9090:8000"
+    volumes:
+      - ./ecommerceWebSite:/ecommerce_app
+    command: >
+      python3 manage.py runserver --settings=core.settings.dev
+    env_file:
+      - ./ecommerceWebSite/core/settings/.env.ini
+    depends_on:
+      - postgres
+    networks:
+      - private-network
+ 
+  postgres:
+    restart: always
+    image: postgres
+    container_name: postgres #you can change this
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=ecommerce
+      - POSTGRES_PORT=5432
+      - POSTGRES_PASSWORD=Xq+cT)>6N5uu2?3Agm8ZqK}aACrSXKzVtD;pq
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+
+
+volumes:
+  postgres_data:

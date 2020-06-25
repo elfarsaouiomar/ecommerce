@@ -27,11 +27,14 @@
 
             <div class="col-md-6">
               <h2 class="text-black">{{product.name}}</h2>
+             <div>
                  {% autoescape off %}
                    {{product.description}}
                 {% endautoescape %}
-                <p><strong class="text-primary h4">{{product.price}} $</strong></p>
+             </div>
 
+              <div class="col-md-6"> <p><strong class="text-primary h4">{{product.price}} $</strong></p></div>
+              <div class="col-md-6"> <p><strong class="text-primary h4 text-success">{{product.quantity}} In stock</strong></p></div>               
               <div class="mb-1 d-flex">
                 <label for="option-sm" class="d-flex mr-3 mb-3">
                   <span class="d-inline-block mr-2" style="top:-2px; position: relative;"><input type="radio" checked id="option-sm" name="shop-sizes"></span> <span class="d-inline-block text-black">Small</span>

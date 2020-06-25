@@ -1,0 +1,34 @@
+version: '3'
+
+#envfile=./ecommerceWebSite/config/venv/.env.dev
+services:
+  monapp:
+    container_name: django-apps
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "9090:8000"
+    volumes:
+      - ./ecommerceWebSite:/ecommerce_app
+    command: >
+      python3 manage.py runserver --settings=core.settings.dev
+    env_file:
+      - ./ecommerceWebSite/config/venv/.env.dev
+    depends_on:
+      - db
+ 
+  db:
+    restart: always
+    image: postgres
+    container_name: postgres #you can change this
+    environment:
+      - ./ecommerceWebSite/config/venv/.env.dev
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+
+
+volumes:
+  postgres_data:

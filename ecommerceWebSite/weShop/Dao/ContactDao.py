@@ -1,4 +1,4 @@
-from ecommerceWebSite.weShop.Models.models import Contact
+from weShop.Models.models import Contact
 
 class ContactDao:
 

@@ -9,6 +9,7 @@ from weShop.forms import orderForm
 from weShop.Application.ContactApp import ContactApp
 from weShop.Dto.ContactDto import ContactDto
 from weShop.Models.models import Subscribe, Product, Category, Service, OrderItem, Order, Country
+from django.conf import settings
 
 def index(request):
     context = {}

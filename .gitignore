@@ -105,13 +105,15 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-.env
+ecommerceWebSite/core/.env
 .venv
+.env/
 env/
 venv/
 ENV/
 env.bak/
 venv.bak/
+.env.ini
 
 # Spyder project settings
 .spyderproject
@@ -130,3 +132,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# conf
+config.yaml
