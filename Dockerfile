@@ -2,6 +2,8 @@
 # pull official base image
 FROM python:3.8.3-alpine
 
+MAINTAINER omarelfarsaoui
+
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
@@ -23,5 +25,5 @@ RUN adduser -D ecommerceuser
 USER ecommerceuser
 
 #EXPOSE 8000
-#CMD ["python3", "manage.py", "runserver", "settings=core.settings.dev"]
+CMD ["python3", "manage.py", "runserver", "0.0.0.0:8000"]
 #CMD ["gunicorn", "-c", "config/gunicorn/conf.py", "--bind", ":8000", "--chdir", "hello", "hello.wsgi:application"]
