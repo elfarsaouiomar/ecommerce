@@ -1,10 +1,10 @@
 import os
 from oscar.defaults import *
-
+import environ
+environ.Env.read_env()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Application definition
 INSTALLED_APPS = [
@@ -65,6 +65,32 @@ HAYSTACK_CONNECTIONS = {
 
 SITE_ID = 1
 
+DEBUG = os.environ.get("DEBUG")
+ALLOWED_HOSTS = [os.environ.get("ALLOWED_HOSTS")]
+SECRET_KEY = os.environ.get("djangoSecKey")
+
+exit
+# read conf file
+CAPTCHA_PRIVATE = os.environ.get("captcha_private")
+CAPTCHA_PUBLIC = os.environ.get("captcha_public")
+
+DATABASENAME = os.environ.get("POSTGRES_DB")
+DATABASEUSER = os.environ.get("POSTGRES_USER")
+DATABASEPWD = os.environ.get("POSTGRES_PASSWORD")
+DATABASEHOST = os.environ.get("HOST")
+DATABASEPORT = os.environ.get("POSTGRES_PORT")
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': DATABASENAME,
+        'USER': DATABASEUSER,
+        'PASSWORD': DATABASEPWD,
+        'HOST': DATABASEHOST,
+        'PORT': DATABASEPORT,
+    }
+}
+  
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -146,9 +172,6 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR,'static'),
 )
-
-print("BASE_DIR : ", BASE_DIR)
-print("STATICFILES_DIRS :", STATICFILES_DIRS)
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'upload')
 MEDIA_URL = '/upload/'
