@@ -1,0 +1,176 @@
+../venv/lib/python3.8/site-packages/django/contrib/messages/__init__.py:1:1 'from django.contrib.messages.api import *' used; unable to detect undefined names
+../venv/lib/python3.8/site-packages/django/contrib/messages/__init__.py:1:1 'django.contrib.messages.api.*' imported but unused
+../venv/lib/python3.8/site-packages/django/contrib/messages/__init__.py:2:1 'from django.contrib.messages.constants import *' used; unable to detect undefined names
+../venv/lib/python3.8/site-packages/django/contrib/messages/__init__.py:2:1 'django.contrib.messages.constants.*' imported but unused
+weShop/Models/models.py:2:1 'django.db.models.ManyToManyField' imported but unused
+weShop/Models/models.py:5:1 'datetime.datetime' imported but unused
+weShop/Models/models.py:5:1 'datetime.date' imported but unused
+weShop/Dto/ContactDto.py:65:9 local variable 'e' is assigned to but never used
+weShop/Controllers/views.py:11:1 'weShop.Models.models.Order' imported but unused
+weShop/Controllers/views.py:12:1 'django.conf.settings' imported but unused
+weShop/Application/ContactApp.py:2:1 'weShop.Dto.ContactDto.ContactDto' imported but unused
+accounts/admin.py:4:1 'django.contrib.admin' imported but unused
+accounts/Controllers/views.py:6:1 'weShop.Models.models.OrderItem' imported but unused
+../venv/lib/python3.8/site-packages/oscar/config.py:4:1 'django.conf.settings' imported but unused
+../venv/lib/python3.8/site-packages/oscar/test/factories/__init__.py:10:1 'from oscar.test.factories.address import *' used; unable to detect undefined names
+../venv/lib/python3.8/site-packages/oscar/test/factories/__init__.py:11:1 'from oscar.test.factories.basket import *' used; unable to detect undefined names
+../venv/lib/python3.8/site-packages/oscar/test/factories/__init__.py:12:1 'from oscar.test.factories.catalogue import *' used; unable to detect undefined names
+../venv/lib/python3.8/site-packages/oscar/test/factories/__init__.py:13:1 'from oscar.test.factories.contrib import *' used; unable to detect undefined names
+../venv/lib/python3.8/site-packages/oscar/test/factories/__init__.py:14:1 'from oscar.test.factories.customer import *' used; unable to detect undefined names
+../venv/lib/python3.8/site-packages/oscar/test/factories/__init__.py:15:1 'from oscar.test.factories.models import *' used; unable to detect undefined names
+../venv/lib/python3.8/site-packages/oscar/test/factories/__init__.py:16:1 'from oscar.test.factories.offer import *' used; unable to detect undefined names
+../venv/lib/python3.8/site-packages/oscar/test/factories/__init__.py:17:1 'from oscar.test.factories.order import *' used; unable to detect undefined names
+../venv/lib/python3.8/site-packages/oscar/test/factories/__init__.py:18:1 'from oscar.test.factories.partner import *' used; unable to detect undefined names
+../venv/lib/python3.8/site-packages/oscar/test/factories/__init__.py:19:1 'from oscar.test.factories.payment import *' used; unable to detect undefined names
+../venv/lib/python3.8/site-packages/oscar/test/factories/__init__.py:20:1 'from oscar.test.factories.voucher import *' used; unable to detect undefined names
+../venv/lib/python3.8/site-packages/oscar/test/factories/__init__.py:21:1 'from oscar.test.factories.wishlists import *' used; unable to detect undefined names
+../venv/lib/python3.8/site-packages/oscar/test/factories/__init__.py:232:15 'VoucherFactory' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.test.factories.address, oscar.test.factories.basket, oscar.test.factories.catalogue, oscar.test.factories.contrib, oscar.test.factories.customer, oscar.test.factories.models, oscar.test.factories.offer, oscar.test.factories.order, oscar.test.factories.partner, oscar.test.factories.payment, oscar.test.factories.voucher, oscar.test.factories.wishlists
+../venv/lib/python3.8/site-packages/oscar/apps/order/models.py:3:1 'from oscar.apps.order.abstract_models import *' used; unable to detect undefined names
+../venv/lib/python3.8/site-packages/oscar/apps/order/models.py:6:1 'PaymentEventQuantity' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.apps.order.abstract_models
+../venv/lib/python3.8/site-packages/oscar/apps/order/models.py:6:1 'ShippingEventQuantity' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.apps.order.abstract_models
+../venv/lib/python3.8/site-packages/oscar/apps/order/models.py:10:17 'AbstractOrder' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.apps.order.abstract_models
+../venv/lib/python3.8/site-packages/oscar/apps/order/models.py:17:21 'AbstractOrderNote' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.apps.order.abstract_models
+../venv/lib/python3.8/site-packages/oscar/apps/order/models.py:24:29 'AbstractOrderStatusChange' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.apps.order.abstract_models
+../venv/lib/python3.8/site-packages/oscar/apps/order/models.py:31:30 'AbstractCommunicationEvent' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.apps.order.abstract_models
+../venv/lib/python3.8/site-packages/oscar/apps/order/models.py:52:16 'AbstractLine' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.apps.order.abstract_models
+../venv/lib/python3.8/site-packages/oscar/apps/order/models.py:59:21 'AbstractLinePrice' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.apps.order.abstract_models
+../venv/lib/python3.8/site-packages/oscar/apps/order/models.py:66:25 'AbstractLineAttribute' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.apps.order.abstract_models
+../venv/lib/python3.8/site-packages/oscar/apps/order/models.py:73:25 'AbstractShippingEvent' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.apps.order.abstract_models
+../venv/lib/python3.8/site-packages/oscar/apps/order/models.py:80:29 'AbstractShippingEventType' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.apps.order.abstract_models
+../venv/lib/python3.8/site-packages/oscar/apps/order/models.py:87:24 'AbstractPaymentEvent' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.apps.order.abstract_models
+../venv/lib/python3.8/site-packages/oscar/apps/order/models.py:94:28 'AbstractPaymentEventType' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.apps.order.abstract_models
+../venv/lib/python3.8/site-packages/oscar/apps/order/models.py:101:25 'AbstractOrderDiscount' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.apps.order.abstract_models
+../venv/lib/python3.8/site-packages/oscar/apps/order/migrations/0004_auto_20160111_1108.py:4:1 'django.db.models' imported but unused
+../venv/lib/python3.8/site-packages/oscar/apps/analytics/apps.py:12:9 '.receivers' imported but unused
+../venv/lib/python3.8/site-packages/oscar/apps/customer/apps.py:19:9 redefinition of unused 'receivers' from line 18
+../venv/lib/python3.8/site-packages/oscar/apps/customer/apps.py:19:9 '.alerts.receivers' imported but unused
+../venv/lib/python3.8/site-packages/oscar/apps/customer/migrations/0002_auto_20150807_1725.py:4:1 'django.db.models' imported but unused
+../venv/lib/python3.8/site-packages/oscar/apps/voucher/apps.py:12:9 '.receivers' imported but unused
+../venv/lib/python3.8/site-packages/oscar/apps/basket/migrations/0006_auto_20160111_1108.py:4:1 'django.db.models' imported but unused
+../venv/lib/python3.8/site-packages/oscar/apps/offer/apps.py:16:9 '.signals' imported but unused
+../venv/lib/python3.8/site-packages/oscar/apps/offer/utils.py:6:1 'oscar.apps.offer.applicator.Applicator' imported but unused
+../venv/lib/python3.8/site-packages/oscar/apps/offer/models.py:60:1 'from oscar.apps.offer.benefits import *' used; unable to detect undefined names
+../venv/lib/python3.8/site-packages/oscar/apps/offer/models.py:60:1 'oscar.apps.offer.benefits.*' imported but unused
+../venv/lib/python3.8/site-packages/oscar/apps/offer/models.py:61:1 'from oscar.apps.offer.conditions import *' used; unable to detect undefined names
+../venv/lib/python3.8/site-packages/oscar/apps/offer/models.py:61:1 'oscar.apps.offer.conditions.*' imported but unused
+../venv/lib/python3.8/site-packages/oscar/apps/offer/migrations/0002_auto_20151210_1053.py:4:1 'django.db.models' imported but unused
+../venv/lib/python3.8/site-packages/oscar/apps/catalogue/apps.py:17:9 '.receivers' imported but unused
+../venv/lib/python3.8/site-packages/oscar/apps/catalogue/apps.py:46:9 '.receivers' imported but unused
+../venv/lib/python3.8/site-packages/oscar/apps/catalogue/models.py:4:1 'from oscar.apps.catalogue.abstract_models import *' used; unable to detect undefined names
+../venv/lib/python3.8/site-packages/oscar/apps/catalogue/models.py:7:1 'ProductAttributesContainer' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.apps.catalogue.abstract_models
+../venv/lib/python3.8/site-packages/oscar/apps/catalogue/models.py:11:24 'AbstractProductClass' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.apps.catalogue.abstract_models
+../venv/lib/python3.8/site-packages/oscar/apps/catalogue/models.py:18:20 'AbstractCategory' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.apps.catalogue.abstract_models
+../venv/lib/python3.8/site-packages/oscar/apps/catalogue/models.py:25:27 'AbstractProductCategory' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.apps.catalogue.abstract_models
+../venv/lib/python3.8/site-packages/oscar/apps/catalogue/models.py:32:19 'AbstractProduct' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.apps.catalogue.abstract_models
+../venv/lib/python3.8/site-packages/oscar/apps/catalogue/models.py:39:33 'AbstractProductRecommendation' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.apps.catalogue.abstract_models
+../venv/lib/python3.8/site-packages/oscar/apps/catalogue/models.py:46:28 'AbstractProductAttribute' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.apps.catalogue.abstract_models
+../venv/lib/python3.8/site-packages/oscar/apps/catalogue/models.py:53:33 'AbstractProductAttributeValue' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.apps.catalogue.abstract_models
+../venv/lib/python3.8/site-packages/oscar/apps/catalogue/models.py:60:32 'AbstractAttributeOptionGroup' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.apps.catalogue.abstract_models
+../venv/lib/python3.8/site-packages/oscar/apps/catalogue/models.py:67:27 'AbstractAttributeOption' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.apps.catalogue.abstract_models
+../venv/lib/python3.8/site-packages/oscar/apps/catalogue/models.py:74:18 'AbstractOption' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.apps.catalogue.abstract_models
+../venv/lib/python3.8/site-packages/oscar/apps/catalogue/models.py:81:24 'AbstractProductImage' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.apps.catalogue.abstract_models
+../venv/lib/python3.8/site-packages/oscar/apps/catalogue/migrations/0002_auto_20150217_1221.py:4:1 'django.db.models' imported but unused
+../venv/lib/python3.8/site-packages/oscar/apps/catalogue/migrations/0007_auto_20151207_1440.py:4:1 'django.db.models' imported but unused
+../venv/lib/python3.8/site-packages/oscar/apps/catalogue/migrations/0003_data_migration_slugs.py:4:1 'django.db.models' imported but unused
+../venv/lib/python3.8/site-packages/oscar/apps/wishlists/models.py:4:1 'from .abstract_models import *' used; unable to detect undefined names
+../venv/lib/python3.8/site-packages/oscar/apps/wishlists/models.py:10:20 'AbstractWishList' may be undefined, or defined from star imports: [E] PYFLAKES:.abstract_models
+../venv/lib/python3.8/site-packages/oscar/apps/wishlists/models.py:17:16 'AbstractLine' may be undefined, or defined from star imports: [E] PYFLAKES:.abstract_models
+../venv/lib/python3.8/site-packages/oscar/apps/wishlists/migrations/0002_auto_20160111_1108.py:4:1 'django.db.models' imported but unused
+../venv/lib/python3.8/site-packages/oscar/apps/partner/apps.py:12:9 '.receivers' imported but unused
+../venv/lib/python3.8/site-packages/oscar/apps/partner/migrations/0004_auto_20160107_1755.py:4:1 'django.db.models' imported but unused
+../venv/lib/python3.8/site-packages/oscar/apps/analytics/apps.py:12:9 '.receivers' imported but unused
+../venv/lib/python3.8/site-packages/oscar/apps/catalogue/apps.py:17:9 '.receivers' imported but unused
+../venv/lib/python3.8/site-packages/oscar/apps/catalogue/apps.py:46:9 '.receivers' imported but unused
+../venv/lib/python3.8/site-packages/oscar/apps/catalogue/models.py:4:1 'from oscar.apps.catalogue.abstract_models import *' used; unable to detect undefined names
+../venv/lib/python3.8/site-packages/oscar/apps/catalogue/models.py:7:1 'ProductAttributesContainer' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.apps.catalogue.abstract_models
+../venv/lib/python3.8/site-packages/oscar/apps/catalogue/models.py:11:24 'AbstractProductClass' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.apps.catalogue.abstract_models
+../venv/lib/python3.8/site-packages/oscar/apps/catalogue/models.py:18:20 'AbstractCategory' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.apps.catalogue.abstract_models
+../venv/lib/python3.8/site-packages/oscar/apps/catalogue/models.py:25:27 'AbstractProductCategory' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.apps.catalogue.abstract_models
+../venv/lib/python3.8/site-packages/oscar/apps/catalogue/models.py:32:19 'AbstractProduct' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.apps.catalogue.abstract_models
+../venv/lib/python3.8/site-packages/oscar/apps/catalogue/models.py:39:33 'AbstractProductRecommendation' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.apps.catalogue.abstract_models
+../venv/lib/python3.8/site-packages/oscar/apps/catalogue/models.py:46:28 'AbstractProductAttribute' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.apps.catalogue.abstract_models
+../venv/lib/python3.8/site-packages/oscar/apps/catalogue/models.py:53:33 'AbstractProductAttributeValue' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.apps.catalogue.abstract_models
+../venv/lib/python3.8/site-packages/oscar/apps/catalogue/models.py:60:32 'AbstractAttributeOptionGroup' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.apps.catalogue.abstract_models
+../venv/lib/python3.8/site-packages/oscar/apps/catalogue/models.py:67:27 'AbstractAttributeOption' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.apps.catalogue.abstract_models
+../venv/lib/python3.8/site-packages/oscar/apps/catalogue/models.py:74:18 'AbstractOption' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.apps.catalogue.abstract_models
+../venv/lib/python3.8/site-packages/oscar/apps/catalogue/models.py:81:24 'AbstractProductImage' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.apps.catalogue.abstract_models
+../venv/lib/python3.8/site-packages/oscar/apps/catalogue/migrations/0002_auto_20150217_1221.py:4:1 'django.db.models' imported but unused
+../venv/lib/python3.8/site-packages/oscar/apps/catalogue/migrations/0007_auto_20151207_1440.py:4:1 'django.db.models' imported but unused
+../venv/lib/python3.8/site-packages/oscar/apps/catalogue/migrations/0003_data_migration_slugs.py:4:1 'django.db.models' imported but unused
+../venv/lib/python3.8/site-packages/oscar/apps/partner/apps.py:12:9 '.receivers' imported but unused
+../venv/lib/python3.8/site-packages/oscar/apps/partner/migrations/0004_auto_20160107_1755.py:4:1 'django.db.models' imported but unused
+../venv/lib/python3.8/site-packages/oscar/apps/basket/migrations/0006_auto_20160111_1108.py:4:1 'django.db.models' imported but unused
+../venv/lib/python3.8/site-packages/oscar/apps/offer/apps.py:16:9 '.signals' imported but unused
+../venv/lib/python3.8/site-packages/oscar/apps/offer/utils.py:6:1 'oscar.apps.offer.applicator.Applicator' imported but unused
+../venv/lib/python3.8/site-packages/oscar/apps/offer/models.py:60:1 'from oscar.apps.offer.benefits import *' used; unable to detect undefined names
+../venv/lib/python3.8/site-packages/oscar/apps/offer/models.py:60:1 'oscar.apps.offer.benefits.*' imported but unused
+../venv/lib/python3.8/site-packages/oscar/apps/offer/models.py:61:1 'from oscar.apps.offer.conditions import *' used; unable to detect undefined names
+../venv/lib/python3.8/site-packages/oscar/apps/offer/models.py:61:1 'oscar.apps.offer.conditions.*' imported but unused
+../venv/lib/python3.8/site-packages/oscar/apps/offer/migrations/0002_auto_20151210_1053.py:4:1 'django.db.models' imported but unused
+../venv/lib/python3.8/site-packages/oscar/apps/order/models.py:3:1 'from oscar.apps.order.abstract_models import *' used; unable to detect undefined names
+../venv/lib/python3.8/site-packages/oscar/apps/order/models.py:6:1 'PaymentEventQuantity' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.apps.order.abstract_models
+../venv/lib/python3.8/site-packages/oscar/apps/order/models.py:6:1 'ShippingEventQuantity' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.apps.order.abstract_models
+../venv/lib/python3.8/site-packages/oscar/apps/order/models.py:10:17 'AbstractOrder' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.apps.order.abstract_models
+../venv/lib/python3.8/site-packages/oscar/apps/order/models.py:17:21 'AbstractOrderNote' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.apps.order.abstract_models
+../venv/lib/python3.8/site-packages/oscar/apps/order/models.py:24:29 'AbstractOrderStatusChange' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.apps.order.abstract_models
+../venv/lib/python3.8/site-packages/oscar/apps/order/models.py:31:30 'AbstractCommunicationEvent' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.apps.order.abstract_models
+../venv/lib/python3.8/site-packages/oscar/apps/order/models.py:52:16 'AbstractLine' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.apps.order.abstract_models
+../venv/lib/python3.8/site-packages/oscar/apps/order/models.py:59:21 'AbstractLinePrice' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.apps.order.abstract_models
+../venv/lib/python3.8/site-packages/oscar/apps/order/models.py:66:25 'AbstractLineAttribute' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.apps.order.abstract_models
+../venv/lib/python3.8/site-packages/oscar/apps/order/models.py:73:25 'AbstractShippingEvent' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.apps.order.abstract_models
+../venv/lib/python3.8/site-packages/oscar/apps/order/models.py:80:29 'AbstractShippingEventType' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.apps.order.abstract_models
+../venv/lib/python3.8/site-packages/oscar/apps/order/models.py:87:24 'AbstractPaymentEvent' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.apps.order.abstract_models
+../venv/lib/python3.8/site-packages/oscar/apps/order/models.py:94:28 'AbstractPaymentEventType' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.apps.order.abstract_models
+../venv/lib/python3.8/site-packages/oscar/apps/order/models.py:101:25 'AbstractOrderDiscount' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.apps.order.abstract_models
+../venv/lib/python3.8/site-packages/oscar/apps/order/migrations/0004_auto_20160111_1108.py:4:1 'django.db.models' imported but unused
+../venv/lib/python3.8/site-packages/oscar/apps/customer/apps.py:19:9 redefinition of unused 'receivers' from line 18
+../venv/lib/python3.8/site-packages/oscar/apps/customer/apps.py:19:9 '.alerts.receivers' imported but unused
+../venv/lib/python3.8/site-packages/oscar/apps/customer/migrations/0002_auto_20150807_1725.py:4:1 'django.db.models' imported but unused
+../venv/lib/python3.8/site-packages/oscar/apps/voucher/apps.py:12:9 '.receivers' imported but unused
+../venv/lib/python3.8/site-packages/oscar/apps/wishlists/models.py:4:1 'from .abstract_models import *' used; unable to detect undefined names
+../venv/lib/python3.8/site-packages/oscar/apps/wishlists/models.py:10:20 'AbstractWishList' may be undefined, or defined from star imports: [E] PYFLAKES:.abstract_models
+../venv/lib/python3.8/site-packages/oscar/apps/wishlists/models.py:17:16 'AbstractLine' may be undefined, or defined from star imports: [E] PYFLAKES:.abstract_models
+../venv/lib/python3.8/site-packages/oscar/apps/wishlists/migrations/0002_auto_20160111_1108.py:4:1 'django.db.models' imported but unused
+../venv/lib/python3.8/site-packages/widget_tweaks/tests.py:421:5 redefinition of unused 'test_field_double_rendering_simple' from line 359
+../venv/lib/python3.8/site-packages/widget_tweaks/templatetags/widget_tweaks.py:173:9 local variable 'tag_name' is assigned to but never used
+../venv/lib/python3.8/site-packages/haystack/admin.py:113:9 local variable 'formset' is assigned to but never used
+../venv/lib/python3.8/site-packages/haystack/indexes.py:14:1 'haystack.constants.Indexable' imported but unused
+../venv/lib/python3.8/site-packages/haystack/indexes.py:15:1 'from haystack.fields import *' used; unable to detect undefined names
+../venv/lib/python3.8/site-packages/haystack/indexes.py:52:32 'SearchField' may be undefined, or defined from star imports: [E] PYFLAKES:haystack.fields
+../venv/lib/python3.8/site-packages/haystack/indexes.py:114:19 'SearchFieldError' may be undefined, or defined from star imports: [E] PYFLAKES:haystack.fields
+../venv/lib/python3.8/site-packages/haystack/indexes.py:361:12 'CharField' may be undefined, or defined from star imports: [E] PYFLAKES:haystack.fields
+../venv/lib/python3.8/site-packages/haystack/indexes.py:368:46 'CharField' may be undefined, or defined from star imports: [E] PYFLAKES:haystack.fields
+../venv/lib/python3.8/site-packages/haystack/indexes.py:376:18 'DateTimeField' may be undefined, or defined from star imports: [E] PYFLAKES:haystack.fields
+../venv/lib/python3.8/site-packages/haystack/indexes.py:378:18 'BooleanField' may be undefined, or defined from star imports: [E] PYFLAKES:haystack.fields
+../venv/lib/python3.8/site-packages/haystack/indexes.py:380:18 'MultiValueField' may be undefined, or defined from star imports: [E] PYFLAKES:haystack.fields
+../venv/lib/python3.8/site-packages/haystack/indexes.py:382:18 'FloatField' may be undefined, or defined from star imports: [E] PYFLAKES:haystack.fields
+../venv/lib/python3.8/site-packages/haystack/indexes.py:384:18 'IntegerField' may be undefined, or defined from star imports: [E] PYFLAKES:haystack.fields
+../venv/lib/python3.8/site-packages/haystack/indexes.py:403:12 'CharField' may be undefined, or defined from star imports: [E] PYFLAKES:haystack.fields
+../venv/lib/python3.8/site-packages/haystack/indexes.py:434:19 'SearchFieldError' may be undefined, or defined from star imports: [E] PYFLAKES:haystack.fields
+../venv/lib/python3.8/site-packages/haystack/panels.py:5:1 'datetime' imported but unused
+../venv/lib/python3.8/site-packages/haystack/__init__.py:9:1 'haystack.signals' imported but unused
+../venv/lib/python3.8/site-packages/haystack/backends/whoosh_backend.py:614:49 use ==/!= to compare constant literals (str, bytes, int, float, tuple)
+../venv/lib/python3.8/site-packages/haystack/backends/elasticsearch2_backend.py:13:1 'haystack.utils.log as logging' imported but unused
+../venv/lib/python3.8/site-packages/haystack/utils/__init__.py:12:1 'haystack.utils.highlighting.Highlighter' imported but unused
+../venv/lib/python3.8/site-packages/haystack/utils/geo.py:5:1 'django.contrib.gis.geos.Point' imported but unused
+../venv/lib/python3.8/site-packages/haystack/utils/geo.py:6:1 'django.contrib.gis.measure.D' imported but unused
+../venv/lib/python3.8/site-packages/haystack/utils/geo.py:6:1 'django.contrib.gis.measure.Distance' imported but unused
+../venv/lib/python3.8/site-packages/haystack/utils/geo.py:61:9 local variable 'km' is assigned to but never used
+../venv/lib/python3.8/site-packages/treebeard/admin.py:26:5 'django.contrib.admin.views.main.TO_FIELD_VAR' imported but unused
+../venv/lib/python3.8/site-packages/treebeard/al_tree.py:4:1 'django.db.transaction' imported but unused
+../venv/lib/python3.8/site-packages/treebeard/ns_tree.py:10:1 'django.db.transaction' imported but unused
+../venv/lib/python3.8/site-packages/treebeard/mp_tree.py:10:1 'django.db.transaction' imported but unused
+../venv/lib/python3.8/site-packages/treebeard/forms.py:5:1 'django.forms.models.BaseModelForm' imported but unused
+../venv/lib/python3.8/site-packages/treebeard/forms.py:5:1 'django.forms.models.model_to_dict' imported but unused
+../venv/lib/python3.8/site-packages/treebeard/models.py:11:1 'django.db.transaction' imported but unused
+../venv/lib/python3.8/site-packages/treebeard/models.py:610:9 local variable 'result' is assigned to but never used
+../venv/lib/python3.8/site-packages/treebeard/models.py:610:17 local variable 'info' is assigned to but never used
+../venv/lib/python3.8/site-packages/treebeard/models.py:611:9 local variable 'start_depth' is assigned to but never used
+../venv/lib/python3.8/site-packages/treebeard/models.py:611:22 local variable 'prev_depth' is assigned to but never used
+../venv/lib/python3.8/site-packages/treebeard/tests/urls.py:1:1 'django.conf.urls.include' imported but unused
+../venv/lib/python3.8/site-packages/sorl/thumbnail/__init__.py:1:1 'sorl.thumbnail.fields.ImageField' imported but unused
+../venv/lib/python3.8/site-packages/sorl/thumbnail/__init__.py:2:1 'sorl.thumbnail.shortcuts.get_thumbnail' imported but unused
+../venv/lib/python3.8/site-packages/sorl/thumbnail/__init__.py:2:1 'sorl.thumbnail.shortcuts.delete' imported but unused
+../venv/lib/python3.8/site-packages/sorl/thumbnail/admin/__init__.py:1:1 'django.forms.ClearableFileInput' imported but unused
+../venv/lib/python3.8/site-packages/sorl/thumbnail/templatetags/sorl_thumbnail.py:8:1 'from .thumbnail import *' used; unable to detect undefined names
+../venv/lib/python3.8/site-packages/sorl/thumbnail/templatetags/sorl_thumbnail.py:8:1 '.thumbnail.*' imported but unused

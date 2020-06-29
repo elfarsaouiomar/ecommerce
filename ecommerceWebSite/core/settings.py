@@ -65,8 +65,8 @@ HAYSTACK_CONNECTIONS = {
 }
 
 JENKINS_TASKS = (
-‘django_jenkins.tasks.run_pep8’,
-‘django_jenkins.tasks.run_pyflakes’
+    'django_jenkins.tasks.run_pep8',
+    'django_jenkins.tasks.run_pyflakes'
 )
 
 SITE_ID = 1
