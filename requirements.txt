@@ -6,6 +6,7 @@ Django==2.2.13
 django-environ==0.4.5
 django-extra-views==0.11.0
 django-haystack==2.8.1
+django-jenkins==0.110.0
 django-oscar==2.0.4
 django-phonenumber-field==2.0.1
 django-tables2==1.21.2
@@ -14,6 +15,7 @@ django-widget-tweaks==1.4.8
 factory-boy==2.12.0
 Faker==4.1.0
 idna==2.9
+pep8==1.7.1
 pexpect==4.8.0
 phonenumbers==8.12.5
 Pillow==7.1.2
@@ -21,6 +23,7 @@ psycopg2==2.8.5
 ptyprocess==0.6.0
 purl==1.5
 pycountry==19.8.18
+pyflakes==2.2.0
 python-dateutil==2.8.1
 pytz==2020.1
 requests==2.23.0

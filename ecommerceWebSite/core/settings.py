@@ -18,6 +18,7 @@ INSTALLED_APPS = [
     'accounts',
     'django.contrib.sites',
     'django.contrib.flatpages',
+    'django_jenkins', # django-jenkins test
 
     'oscar',
     'oscar.apps.analytics',
@@ -62,6 +63,11 @@ HAYSTACK_CONNECTIONS = {
         'ENGINE': 'haystack.backends.simple_backend.SimpleEngine',
     },
 }
+
+JENKINS_TASKS = (
+‘django_jenkins.tasks.run_pep8’,
+‘django_jenkins.tasks.run_pyflakes’
+)
 
 SITE_ID = 1
 
