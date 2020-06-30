@@ -26,8 +26,8 @@ accounts/Controllers/views.py:6:1 'weShop.Models.models.OrderItem' imported but 
 ../venv/lib/python3.8/site-packages/oscar/test/factories/__init__.py:21:1 'from oscar.test.factories.wishlists import *' used; unable to detect undefined names
 ../venv/lib/python3.8/site-packages/oscar/test/factories/__init__.py:232:15 'VoucherFactory' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.test.factories.address, oscar.test.factories.basket, oscar.test.factories.catalogue, oscar.test.factories.contrib, oscar.test.factories.customer, oscar.test.factories.models, oscar.test.factories.offer, oscar.test.factories.order, oscar.test.factories.partner, oscar.test.factories.payment, oscar.test.factories.voucher, oscar.test.factories.wishlists
 ../venv/lib/python3.8/site-packages/oscar/apps/order/models.py:3:1 'from oscar.apps.order.abstract_models import *' used; unable to detect undefined names
-../venv/lib/python3.8/site-packages/oscar/apps/order/models.py:6:1 'PaymentEventQuantity' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.apps.order.abstract_models
 ../venv/lib/python3.8/site-packages/oscar/apps/order/models.py:6:1 'ShippingEventQuantity' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.apps.order.abstract_models
+../venv/lib/python3.8/site-packages/oscar/apps/order/models.py:6:1 'PaymentEventQuantity' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.apps.order.abstract_models
 ../venv/lib/python3.8/site-packages/oscar/apps/order/models.py:10:17 'AbstractOrder' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.apps.order.abstract_models
 ../venv/lib/python3.8/site-packages/oscar/apps/order/models.py:17:21 'AbstractOrderNote' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.apps.order.abstract_models
 ../venv/lib/python3.8/site-packages/oscar/apps/order/models.py:24:29 'AbstractOrderStatusChange' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.apps.order.abstract_models
@@ -108,8 +108,8 @@ accounts/Controllers/views.py:6:1 'weShop.Models.models.OrderItem' imported but 
 ../venv/lib/python3.8/site-packages/oscar/apps/offer/models.py:61:1 'oscar.apps.offer.conditions.*' imported but unused
 ../venv/lib/python3.8/site-packages/oscar/apps/offer/migrations/0002_auto_20151210_1053.py:4:1 'django.db.models' imported but unused
 ../venv/lib/python3.8/site-packages/oscar/apps/order/models.py:3:1 'from oscar.apps.order.abstract_models import *' used; unable to detect undefined names
-../venv/lib/python3.8/site-packages/oscar/apps/order/models.py:6:1 'PaymentEventQuantity' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.apps.order.abstract_models
 ../venv/lib/python3.8/site-packages/oscar/apps/order/models.py:6:1 'ShippingEventQuantity' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.apps.order.abstract_models
+../venv/lib/python3.8/site-packages/oscar/apps/order/models.py:6:1 'PaymentEventQuantity' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.apps.order.abstract_models
 ../venv/lib/python3.8/site-packages/oscar/apps/order/models.py:10:17 'AbstractOrder' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.apps.order.abstract_models
 ../venv/lib/python3.8/site-packages/oscar/apps/order/models.py:17:21 'AbstractOrderNote' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.apps.order.abstract_models
 ../venv/lib/python3.8/site-packages/oscar/apps/order/models.py:24:29 'AbstractOrderStatusChange' may be undefined, or defined from star imports: [E] PYFLAKES:oscar.apps.order.abstract_models

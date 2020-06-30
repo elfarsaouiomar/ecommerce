@@ -66,7 +66,11 @@ HAYSTACK_CONNECTIONS = {
 
 JENKINS_TASKS = (
     'django_jenkins.tasks.run_pep8',
-    'django_jenkins.tasks.run_pyflakes'
+    'django_jenkins.tasks.run_pyflakes',
+    'django_jenkins.tasks.run_pylint',
+    #'django_jenkins.tasks.run_jslint',
+    #'django_jenkins.tasks.run_csslint',
+    #'django_jenkins.tasks.run_sloccount'
 )
 
 SITE_ID = 1
@@ -75,7 +79,7 @@ DEBUG = os.environ.get("DEBUG")
 ALLOWED_HOSTS = [os.environ.get("ALLOWED_HOSTS")]
 SECRET_KEY = os.environ.get("djangoSecKey")
 
-exit
+
 # read conf file
 CAPTCHA_PRIVATE = os.environ.get("captcha_private")
 CAPTCHA_PUBLIC = os.environ.get("captcha_public")
