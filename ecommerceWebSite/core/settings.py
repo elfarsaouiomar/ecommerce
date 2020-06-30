@@ -18,7 +18,7 @@ INSTALLED_APPS = [
     'accounts',
     'django.contrib.sites',
     'django.contrib.flatpages',
-    'django_jenkins', # django-jenkins test
+
 
     'oscar',
     'oscar.apps.analytics',
@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'treebeard',
     'sorl.thumbnail',
     'django_tables2',
+    'django_jenkins', # django-jenkins test
 ]
 
 HAYSTACK_CONNECTIONS = {
