@@ -6,9 +6,6 @@ from django.test import Client
 class MyTestCase(unittest.TestCase):
 
     client = Client()
-    
-    
-    
 
     def test_something(self):
         pass

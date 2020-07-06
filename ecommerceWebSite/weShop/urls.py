@@ -13,6 +13,12 @@ urlpatterns = [
     url(r'thankyou/$', views.thankyou, name="thankyou"),
     url(r'contact/$', views.contact, name="contact"),
     url(r'^subscribe/$', views.subscribe, name="subscribe"),
+
+
+
+    url(r'^api/',views.api, name="api"),
+    url(r'^api/id/(?P<slug>[\d-]+)/$',views.apibyId, name="apiById")
+    #site.com/apibyid/slug
 ]
 
 
