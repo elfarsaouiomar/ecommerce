@@ -10,14 +10,14 @@ services:
     volumes:
       - ./ecommerceWebSite:/ecommerce_app
     env_file:
-      - ./ecommerceWebSite/core/base/.env
+      - ./ecommerceWebSite/core/.env
     ports:
       - 8000:8000
     command: python3 manage.py runserver --settings=core.base.dev
   postgres:
     image: postgres:9.6.18-alpine
     env_file:
-      - ./ecommerceWebSite/core/base/.env
+      - ./ecommerceWebSite/core/.env
     volumes:
       - pgdata:/var/lib/postgresql/data
     ports:
