@@ -1,4 +1,3 @@
-
 version: '3'
 
 
@@ -13,7 +12,7 @@ services:
       - ./ecommerceWebSite/core/base/.env
     ports:
       - 8000:8000
-    command: python3 manage.py runserver --settings=core.base.dev
+    command: python3 manage.py runserver --settings=core.base.test
   postgres:
     image: postgres:9.6.18-alpine
     env_file:
