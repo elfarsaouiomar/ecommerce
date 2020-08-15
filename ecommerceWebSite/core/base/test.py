@@ -1,8 +1,8 @@
 from core.settings import *
 from os import environ
 
-DEBUG = environ.get("DEBUG")
-ALLOWED_HOSTS = [environ.get("ALLOWED_HOSTS")]
+DEBUG = environ.get("DEBUG")    
+ALLOWED_HOSTS = ["*"]
 SECRET_KEY = environ.get("djangoSecKey")
 
 DATABASENAME = environ.get("POSTGRES_DB_TEST")

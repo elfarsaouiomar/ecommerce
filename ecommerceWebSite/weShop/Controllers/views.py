@@ -252,7 +252,8 @@ def contact(request):
 
 
 ################### class Utils ######################################
-def isInit(num):
+def isInit\
+                (num):
     try:
         num = int(num)
         if isinstance(num, int):

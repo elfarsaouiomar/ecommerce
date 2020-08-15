@@ -1,8 +1,19 @@
 from django.contrib import admin
 from weShop.Models.models import Subscribe, Contact, Product, Category, Size, Service, Order, OrderItem, Country
+from weShop.Models.translation import ProductTranslationOptions, CategoryTranslationOption
 
-admin.site.register(Product)
-admin.site.register(Category)
+from modeltranslation.translator import register, translator
+
+
+
+from oscar.apps.catalogue.models import Product, Category
+
+
+translator.register(Product, ProductTranslationOptions)
+translator.register(Category, CategoryTranslationOption)
+
+#admin.site.register(Product)
+#admin.site.register(Category)
 admin.site.register(Size)
 
 admin.site.register(Order)
